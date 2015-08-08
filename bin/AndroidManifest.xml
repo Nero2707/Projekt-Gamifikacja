@@ -30,6 +30,10 @@
             android:name=".AchievmentsMenu"
             android:label="@string/app_name" >
         </activity>
+         <activity
+            android:name=".QuestMenu"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

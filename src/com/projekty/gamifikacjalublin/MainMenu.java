@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 public class MainMenu extends Activity implements OnClickListener{
+	private Intent i;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -20,9 +21,19 @@ public class MainMenu extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.przycisk_wyswietl_osiagniecia:
-			Intent i = new Intent(this, AchievmentsMenu.class);
+			i = new Intent(this, AchievmentsMenu.class);
 			startActivity(i);
+			System.out.println("tst");
+			break;
+		case R.id.zadanie_testowe_viewText:
+			i = new Intent(this, QuestMenu.class);
+			 i.putExtra("tytul", "Tytul pierwszego zadania testowego");
+			 i.putExtra("opis", "Opis pierwszego zadania testowego");
+			startActivity(i);	
+			break;
 		}
+	
+		
 		
 	}
 }

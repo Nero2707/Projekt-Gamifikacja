@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/zadanie_tytul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Domyślny tytuł zadania"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Space
+  android:layout_width="1dp"
+  android:layout_height="130dp"/>
+    <TextView
+        android:id="@+id/zadanie_opis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Domyślny opis"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+<View android:layout_height="0dip" 
+          android:layout_width="fill_parent"
+          android:layout_weight="1" />
+    <Button
+        android:id="@+id/przycisk_zglos_wykonanie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:text="@string/etykieta_zglos_wykonanie"  />
+
+</LinearLayout>

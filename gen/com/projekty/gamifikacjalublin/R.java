@@ -30,7 +30,7 @@ public final class R {
         public static final int nieaktywny_achievment=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f09001f;
+        public static final int action_settings=0x7f090023;
         public static final int imageView1=0x7f090004;
         public static final int imageView2=0x7f090008;
         public static final int imageView3=0x7f09000c;
@@ -41,9 +41,10 @@ public final class R {
         public static final int pole_login=0x7f090016;
         public static final int przycisk_pobierz_zadanie=0x7f09001c;
         public static final int przycisk_wyswietl_osiagniecia=0x7f09001a;
-        public static final int przycisk_zadania_innych=0x7f09001e;
+        public static final int przycisk_zadania_innych=0x7f09001f;
         public static final int przycisk_zaloguj=0x7f090018;
         public static final int przycisk_zarejestruj=0x7f090019;
+        public static final int przycisk_zglos_wykonanie=0x7f090022;
         public static final int punkty_tytul=0x7f09001b;
         public static final int tableRow1=0x7f090001;
         public static final int tableRow2=0x7f090005;
@@ -62,11 +63,15 @@ public final class R {
         public static final int textView8=0x7f09000e;
         public static final int textView9=0x7f09000f;
         public static final int teyxtView12=0x7f090015;
+        public static final int zadanie_opis=0x7f090021;
+        public static final int zadanie_testowe_viewText=0x7f09001e;
+        public static final int zadanie_tytul=0x7f090020;
     }
     public static final class layout {
         public static final int achievments_menu=0x7f030000;
         public static final int activity_main=0x7f030001;
         public static final int main_menu=0x7f030002;
+        public static final int quest_menu=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -79,6 +84,7 @@ public final class R {
         public static final int etykieta_zadania_innych=0x7f06000a;
         public static final int etykieta_zaloguj=0x7f060004;
         public static final int etykieta_zarejestruj=0x7f060005;
+        public static final int etykieta_zglos_wykonanie=0x7f060017;
         public static final int glowny_tytul=0x7f060003;
         public static final int haslo_hint=0x7f060007;
         public static final int hello_world=0x7f060001;
