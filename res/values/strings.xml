@@ -15,4 +15,15 @@
 	<string name="etykieta_zadania_innych">Wyświetl pomysły innych użytkowników</string>
     <string name="lista_zadan_tytul">Aktualna lista zadań:</string>
     <string name="punkty_tytul">Punkty:</string>
+    
+    <string name="osiagniecie1_tytul">Do okoła Lublina</string>
+	<string name="osiagniecie1_opis">Przejdź Lublin do okoła w 10 min</string>
+	<string name="osiagniecie2_tytul">Do okoła Lublina 2</string>
+	<string name="osiagniecie2_opis">Przejdź 2 razy Lublin do okoła</string>
+    <string name="osiagniecie3_tytul">Do okoła Lublina 3</string>
+	<string name="osiagniecie3_opis">Przejdź 3 razy Lublin do okoła</string>
+	<string name="osiagniecie4_tytul">Do okoła Lublina 4</string>
+	<string name="osiagniecie4_opis">Przejdź 4 razy Lublin do okoła</string>
+	<string name="osiagniecie5_tytul">Do okoła Lublina 5</string>
+	<string name="osiagniecie5_opis">Przejdź 5 razy Lublin do okoła</string>
 </resources>

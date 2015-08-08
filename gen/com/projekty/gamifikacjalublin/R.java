@@ -25,23 +25,48 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int aktywny_achievment=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int nieaktywny_achievment=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f090009;
-        public static final int button1=0x7f090004;
-        public static final int button2=0x7f090006;
-        public static final int button3=0x7f090008;
-        public static final int pole_haslo=0x7f090001;
-        public static final int pole_login=0x7f090000;
-        public static final int przycisk_zaloguj=0x7f090002;
-        public static final int przycisk_zarejestruj=0x7f090003;
-        public static final int textView1=0x7f090005;
-        public static final int textView2=0x7f090007;
+        public static final int action_settings=0x7f09001f;
+        public static final int imageView1=0x7f090004;
+        public static final int imageView2=0x7f090008;
+        public static final int imageView3=0x7f09000c;
+        public static final int imageView4=0x7f090010;
+        public static final int imageView5=0x7f090014;
+        public static final int lista_zadan_tytul=0x7f09001d;
+        public static final int pole_haslo=0x7f090017;
+        public static final int pole_login=0x7f090016;
+        public static final int przycisk_pobierz_zadanie=0x7f09001c;
+        public static final int przycisk_wyswietl_osiagniecia=0x7f09001a;
+        public static final int przycisk_zadania_innych=0x7f09001e;
+        public static final int przycisk_zaloguj=0x7f090018;
+        public static final int przycisk_zarejestruj=0x7f090019;
+        public static final int punkty_tytul=0x7f09001b;
+        public static final int tableRow1=0x7f090001;
+        public static final int tableRow2=0x7f090005;
+        public static final int tableRow3=0x7f090009;
+        public static final int tableRow4=0x7f09000d;
+        public static final int tableRow5=0x7f090011;
+        public static final int textView1=0x7f090000;
+        public static final int textView10=0x7f090012;
+        public static final int textView11=0x7f090013;
+        public static final int textView2=0x7f090002;
+        public static final int textView3=0x7f090003;
+        public static final int textView4=0x7f090006;
+        public static final int textView5=0x7f090007;
+        public static final int textView6=0x7f09000a;
+        public static final int textView7=0x7f09000b;
+        public static final int textView8=0x7f09000e;
+        public static final int textView9=0x7f09000f;
+        public static final int teyxtView12=0x7f090015;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int main_menu=0x7f030001;
+        public static final int achievments_menu=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int main_menu=0x7f030002;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -58,6 +83,16 @@ public final class R {
         public static final int haslo_hint=0x7f060007;
         public static final int hello_world=0x7f060001;
         public static final int lista_zadan_tytul=0x7f06000b;
+        public static final int osiagniecie1_opis=0x7f06000e;
+        public static final int osiagniecie1_tytul=0x7f06000d;
+        public static final int osiagniecie2_opis=0x7f060010;
+        public static final int osiagniecie2_tytul=0x7f06000f;
+        public static final int osiagniecie3_opis=0x7f060012;
+        public static final int osiagniecie3_tytul=0x7f060011;
+        public static final int osiagniecie4_opis=0x7f060014;
+        public static final int osiagniecie4_tytul=0x7f060013;
+        public static final int osiagniecie5_opis=0x7f060016;
+        public static final int osiagniecie5_tytul=0x7f060015;
         public static final int punkty_tytul=0x7f06000c;
         public static final int zaloguj_hint=0x7f060006;
     }
