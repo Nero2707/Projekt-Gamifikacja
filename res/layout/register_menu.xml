@@ -4,14 +4,13 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:padding="30dip"
-    tools:context="com.projekty.gamifikacjalublin.ekrany.MainActivity" 
     android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/glowny_tytul"
+        android:text="@string/rejestracja_tytul"
         android:textSize="38sp" />
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="35dip" android:text=""/>
@@ -23,14 +22,14 @@
 	     android:layout_gravity="center">
 
 	    <EditText
-	        android:id="@+id/pole_login"
+	        android:id="@+id/pole_login_register"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:hint="@string/zaloguj_hint"
 	        android:inputType="text" />
 
 	    <EditText
-	        android:id="@+id/pole_haslo"
+	        android:id="@+id/pole_haslo_register"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:hint="@string/haslo_hint"
@@ -45,16 +44,11 @@
 	     android:layout_width="match_parent"
 	     android:layout_gravity="center|bottom">
 
-      <Button
-          android:id="@+id/przycisk_zaloguj"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/etykieta_zaloguj" />
 	<View android:layout_height="0dip" 
           android:layout_width="fill_parent"
           android:layout_weight="1" />
       <Button
-          android:id="@+id/przycisk_zarejestruj"
+          android:id="@+id/przycisk_zarejestruj_register"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
           android:text="@string/etykieta_zarejestruj" />

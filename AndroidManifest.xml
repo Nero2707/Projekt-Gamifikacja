@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar">
         <activity
-            android:name=".MainActivity"
+            android:name="com.projekty.gamifikacjalublin.ekrany.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,15 +23,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainMenu"
+            android:name="com.projekty.gamifikacjalublin.ekrany.MainMenu"
+            android:label="@string/app_name" >
+        </activity>
+
+        <activity
+             android:name="com.projekty.gamifikacjalublin.ekrany.AchievmentsMenu"
+            android:label="@string/app_name">
+        </activity>
+         <activity
+            android:name="com.projekty.gamifikacjalublin.ekrany.QuestMenu"
+ 			android:label="@string/app_name" >
+        </activity>
+         <activity
+            android:name="com.projekty.gamifikacjalublin.ekrany.IdeasListMenu"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".AchievmentsMenu"
+            android:name="com.projekty.gamifikacjalublin.ekrany.IdeaMenu"
             android:label="@string/app_name" >
         </activity>
          <activity
-            android:name=".QuestMenu"
+            android:name="com.projekty.gamifikacjalublin.ekrany.NewIdeaMenu"
+            android:label="@string/app_name" >
+        </activity>
+          <activity
+            android:name="com.projekty.gamifikacjalublin.ekrany.RegisterMenu"
             android:label="@string/app_name" >
         </activity>
     </application>

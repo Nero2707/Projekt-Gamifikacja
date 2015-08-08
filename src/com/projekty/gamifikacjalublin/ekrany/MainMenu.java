@@ -1,4 +1,8 @@
-package com.projekty.gamifikacjalublin;
+package com.projekty.gamifikacjalublin.ekrany;
+
+import com.projekty.gamifikacjalublin.R;
+import com.projekty.gamifikacjalublin.R.id;
+import com.projekty.gamifikacjalublin.R.layout;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,6 +19,8 @@ public class MainMenu extends Activity implements OnClickListener{
 		
 		View przyciskOsiagniecia = findViewById(R.id.przycisk_wyswietl_osiagniecia);
 		przyciskOsiagniecia.setOnClickListener(this);
+		View przyciskListaPomyslow = findViewById(R.id.przycisk_zadania_innych);
+		przyciskListaPomyslow.setOnClickListener(this);
 	}
 
 	@Override
@@ -23,13 +29,16 @@ public class MainMenu extends Activity implements OnClickListener{
 		case R.id.przycisk_wyswietl_osiagniecia:
 			i = new Intent(this, AchievmentsMenu.class);
 			startActivity(i);
-			System.out.println("tst");
 			break;
 		case R.id.zadanie_testowe_viewText:
 			i = new Intent(this, QuestMenu.class);
 			 i.putExtra("tytul", "Tytul pierwszego zadania testowego");
 			 i.putExtra("opis", "Opis pierwszego zadania testowego");
 			startActivity(i);	
+			break;
+		case R.id.przycisk_zadania_innych:
+			i = new Intent(this, IdeasListMenu.class);
+			startActivity(i);
 			break;
 		}
 	

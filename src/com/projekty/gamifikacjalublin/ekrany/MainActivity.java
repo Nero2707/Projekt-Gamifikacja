@@ -1,4 +1,9 @@
-package com.projekty.gamifikacjalublin;
+package com.projekty.gamifikacjalublin.ekrany;
+
+import com.projekty.gamifikacjalublin.R;
+import com.projekty.gamifikacjalublin.R.id;
+import com.projekty.gamifikacjalublin.R.layout;
+import com.projekty.gamifikacjalublin.R.menu;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +15,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 
 public class MainActivity extends Activity implements OnClickListener{
-
+	private Intent i;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -18,6 +23,9 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 		View przyciskZaloguj = findViewById(R.id.przycisk_zaloguj);
 		przyciskZaloguj.setOnClickListener(this);
+		
+		View przyciskRejestruj = findViewById(R.id.przycisk_zarejestruj);
+		przyciskRejestruj.setOnClickListener(this);
 	}
 
 	@Override
@@ -43,9 +51,15 @@ public class MainActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.przycisk_zaloguj:
-			Intent i = new Intent(this, MainMenu.class);
+			i = new Intent(this, MainMenu.class);
 			startActivity(i);
+			break;
+		case R.id.przycisk_zarejestruj:
+			i = new Intent(this, RegisterMenu.class);
+			startActivity(i);
+			break;
 		}
+		
 		
 	}
 }

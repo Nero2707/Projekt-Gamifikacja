@@ -28,4 +28,16 @@
 	<string name="osiagniecie5_opis">Przejdź 5 razy Lublin do okoła</string>
 	
 	<string name="etykieta_zglos_wykonanie">Zgłoś wykonanie zadania</string>
+	
+	<string name="lista_pomyslow_tytul">Pomysły na rozwój miasta zgłoszone przez innych</string>
+	<string name="etykieta_dodaj_pomysl">Dodaj nowy pomysł</string>
+	
+	<string name="etykieta_popieram">Popieram</string>
+	<string name="etykieta_nie_popieram">Nie popieram</string>
+	
+	<string name="tytul_pomyslu_hint">Tytuł pomysłu</string>
+	<string name="opis_pomyslu_hint">Opis pomysłu</string>
+	<string name="etykieta_dodaj_pomysl2">Dodaj pomysł</string>
+	
+	<string name="rejestracja_tytul">Rejestracja</string>
 </resources>

@@ -1,4 +1,7 @@
-package com.projekty.gamifikacjalublin;
+package com.projekty.gamifikacjalublin.ekrany;
+
+import com.projekty.gamifikacjalublin.R;
+import com.projekty.gamifikacjalublin.R.layout;
 
 import android.app.Activity;
 import android.os.Bundle;
