@@ -17,8 +17,11 @@ import com.projekty.gamifikacjalublin.core.JSONParser;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -135,6 +138,10 @@ public class MainActivity extends Activity implements OnClickListener{
                 if (success == 1) {
                 	Log.d("Logowanie udane!", json.toString());
                 	//pDialog.dismiss();
+                	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                	Editor edit = sp.edit();
+                	edit.putString("username", username);
+                	edit.commit();
                 	i = new Intent(MainActivity.this, MainMenu.class);
     				startActivity(i);
                 	return json.getString(TAG_MESSAGE);

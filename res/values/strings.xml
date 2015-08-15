@@ -40,4 +40,7 @@
 	<string name="etykieta_dodaj_pomysl2">Dodaj pomysł</string>
 	
 	<string name="rejestracja_tytul">Rejestracja</string>
+	
+	 <string name="post_idea">Dodaj pomysł</string>
+	 <string name="read_idea_title">Ostatnie pomysły</string>
 </resources>
