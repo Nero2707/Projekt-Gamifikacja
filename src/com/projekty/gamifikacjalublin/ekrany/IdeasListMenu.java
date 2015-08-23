@@ -18,6 +18,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -110,7 +111,7 @@ public class IdeasListMenu extends ListActivity implements OnClickListener{
                 String title = c.getString(TAG_TITLE);
                 String content = c.getString(TAG_MESSAGE);
                 String username = c.getString(TAG_USERNAME);
-                
+                String idea_id= c.getString(TAG_IDEA_ID);
 
                 // creating new HashMap
                 HashMap<String, String> map = new HashMap<String, String>();
@@ -118,7 +119,7 @@ public class IdeasListMenu extends ListActivity implements OnClickListener{
                 map.put(TAG_TITLE, title);
                 map.put(TAG_MESSAGE, content);
                 map.put(TAG_USERNAME, username);
-             
+                map.put(TAG_IDEA_ID, idea_id);
                 // adding HashList to ArrayList
                 mIdeasList.add(map);
                 
@@ -154,7 +155,13 @@ public class IdeasListMenu extends ListActivity implements OnClickListener{
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
-
+						//Log.d("klik","po klikniêciu "+parent.getAdapter().getItem(position).getClass());
+						HashMap chosenIdea=(HashMap) parent.getAdapter().getItem(position);
+						i = new Intent(IdeasListMenu.this, IdeaMenu.class);
+						i.putExtra("tytul",chosenIdea.get("title").toString());
+						i.putExtra("opis", chosenIdea.get("message").toString());
+						i.putExtra("idea_id",chosenIdea.get("idea_id").toString());
+						startActivity(i);
 						// This method is triggered if an item is click within our
 						// list. For our example we won't be using this, but
 						// it is useful to know in real life applications.
