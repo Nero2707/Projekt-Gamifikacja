@@ -14,7 +14,7 @@
 	<string name="etykieta_pobierz_zadanie">Pobierz zadanie</string>
 	<string name="etykieta_zadania_innych">Wyświetl pomysły innych użytkowników</string>
     <string name="lista_zadan_tytul">Aktualna lista zadań:</string>
-    <string name="punkty_tytul">Punkty:</string>
+    <string name="punkty_tytul">Punkty: 0</string>
     
     <string name="osiagniecie1_tytul">Do okoła Lublina</string>
 	<string name="osiagniecie1_opis">Przejdź Lublin do okoła w 10 min</string>

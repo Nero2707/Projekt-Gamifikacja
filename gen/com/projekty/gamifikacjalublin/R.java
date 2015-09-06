@@ -34,39 +34,41 @@ public final class R {
         public static final int post_border_style=0x7f020006;
     }
     public static final class id {
-        public static final int ScrollView01=0x7f090029;
-        public static final int action_settings=0x7f090038;
-        public static final int bottom_layover=0x7f09002f;
-        public static final int box=0x7f090033;
-        public static final int box2=0x7f090034;
+        public static final int ScrollView01=0x7f09002a;
+        public static final int action_settings=0x7f090039;
+        public static final int bottom_layover=0x7f090025;
+        public static final int box=0x7f090032;
+        public static final int box2=0x7f090033;
         public static final int imageView1=0x7f090004;
         public static final int imageView2=0x7f090008;
         public static final int imageView3=0x7f09000c;
         public static final int imageView4=0x7f090010;
         public static final int imageView5=0x7f090014;
         public static final int lista_pomyslow_tytul=0x7f09001f;
-        public static final int lista_zadan_tytul=0x7f090025;
-        public static final int message=0x7f090036;
-        public static final int opis_pomyslu=0x7f09002a;
+        public static final int lista_zadan_tytul=0x7f090024;
+        public static final int message=0x7f090035;
+        public static final int opis_pomyslu=0x7f09002b;
         public static final int pole_haslo=0x7f090017;
-        public static final int pole_haslo_register=0x7f090031;
+        public static final int pole_haslo_register=0x7f090030;
         public static final int pole_login=0x7f090016;
-        public static final int pole_login_register=0x7f090030;
+        public static final int pole_login_register=0x7f09002f;
         public static final int pomysl_glosy=0x7f09001c;
         public static final int pomysl_opis=0x7f09001b;
         public static final int pomysl_test_tytul=0x7f090020;
         public static final int pomysl_tytul=0x7f09001a;
         public static final int przycisk_dodaj_pomysl=0x7f090021;
         public static final int przycisk_nie_popieram=0x7f09001e;
-        public static final int przycisk_pobierz_zadanie=0x7f090024;
+        public static final int przycisk_pobierz_zadanie=0x7f090027;
         public static final int przycisk_popieram=0x7f09001d;
         public static final int przycisk_wyswietl_osiagniecia=0x7f090022;
-        public static final int przycisk_zadania_innych=0x7f090027;
+        public static final int przycisk_zadania_innych=0x7f090028;
         public static final int przycisk_zaloguj=0x7f090018;
         public static final int przycisk_zarejestruj=0x7f090019;
-        public static final int przycisk_zarejestruj_register=0x7f090032;
-        public static final int przycisk_zglos_wykonanie=0x7f09002d;
+        public static final int przycisk_zarejestruj_register=0x7f090031;
+        public static final int przycisk_zglos_wykonanie=0x7f09002e;
         public static final int punkty_tytul=0x7f090023;
+        public static final int quest_description=0x7f090038;
+        public static final int quest_title=0x7f090037;
         public static final int tableRow1=0x7f090001;
         public static final int tableRow2=0x7f090005;
         public static final int tableRow3=0x7f090009;
@@ -84,13 +86,12 @@ public final class R {
         public static final int textView8=0x7f09000e;
         public static final int textView9=0x7f09000f;
         public static final int teyxtView12=0x7f090015;
-        public static final int title=0x7f090035;
-        public static final int top_layover=0x7f09002e;
-        public static final int tytul_pomyslu=0x7f090028;
-        public static final int username=0x7f090037;
-        public static final int zadanie_opis=0x7f09002c;
-        public static final int zadanie_testowe_viewText=0x7f090026;
-        public static final int zadanie_tytul=0x7f09002b;
+        public static final int title=0x7f090034;
+        public static final int top_layover=0x7f090026;
+        public static final int tytul_pomyslu=0x7f090029;
+        public static final int username=0x7f090036;
+        public static final int zadanie_opis=0x7f09002d;
+        public static final int zadanie_tytul=0x7f09002c;
     }
     public static final class layout {
         public static final int achievments_menu=0x7f030000;
@@ -103,6 +104,7 @@ public final class R {
         public static final int read_ideas=0x7f030007;
         public static final int register_menu=0x7f030008;
         public static final int single_idea=0x7f030009;
+        public static final int single_quest=0x7f03000a;
     }
     public static final class menu {
         public static final int main=0x7f080000;
