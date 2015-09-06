@@ -30,19 +30,19 @@ public class QuestMenu extends Activity implements OnClickListener{
 		opisTextView.setText(opis);
 		View przyciskZglosWykonanie = findViewById(R.id.przycisk_zglos_wykonanie);
 		przyciskZglosWykonanie.setOnClickListener(this);
+		View przyciskZobaczMape = findViewById(R.id.przycisk_zobacz_mape);
+		przyciskZobaczMape.setOnClickListener(this);
 	}
 	
 	@Override
 	public void onClick(View v) {
-		/*switch(v.getId()){
-		case R.id.przycisk_wyswietl_osiagniecia:
-			i = new Intent(this, AchievmentsMenu.class);
-			
+		switch(v.getId()){
+		case R.id.przycisk_zobacz_mape:
+			i = new Intent(this, MapMenu.class);
 			startActivity(i);
-			System.out.println("tst");
 			break;
 		
-		}*/
+		}
 
 	}
 }	

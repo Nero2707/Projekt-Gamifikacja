@@ -26,6 +26,12 @@
 <View android:layout_height="0dip" 
           android:layout_width="fill_parent"
           android:layout_weight="1" />
+ <Button
+        android:id="@+id/przycisk_zobacz_mape"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:text="@string/etykieta_zobacz_mape"  />
+ 
     <Button
         android:id="@+id/przycisk_zglos_wykonanie"
         android:layout_width="match_parent"
