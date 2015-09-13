@@ -74,17 +74,15 @@ public class IdeaMenu extends Activity implements OnClickListener{
 	
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.przycisk_popieram:
+		int id = v.getId();
+		if (id == R.id.przycisk_popieram) {
 			votes=votes+1;
 			new ModifyVotes(votes).execute();
 			finish();
-			break;
-		case R.id.przycisk_nie_popieram:
+		} else if (id == R.id.przycisk_nie_popieram) {
 			votes=votes-1;
 			new ModifyVotes(votes).execute();
 			finish();
-			break;
 		}
 	}
 	
