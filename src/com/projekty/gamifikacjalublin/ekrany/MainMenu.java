@@ -130,6 +130,7 @@ public class MainMenu extends ListActivity implements OnClickListener{
                 String title = c.getString(TAG_TITLE);
                 String description = c.getString(TAG_DESCRIPTION);
                 String objectives = c.getString(TAG_OBJECTIVES);
+                String id = c.getString(TAG_QUEST_ID);
 
                 // creating new HashMap
                 HashMap<String, String> map = new HashMap<String, String>();
@@ -137,6 +138,7 @@ public class MainMenu extends ListActivity implements OnClickListener{
                 map.put(TAG_TITLE, title);
                 map.put(TAG_DESCRIPTION, description);
                 map.put(TAG_OBJECTIVES, objectives);
+                map.put(TAG_QUEST_ID, id);
                 // adding HashList to ArrayList
                 mQuestsList.add(map);
                 
@@ -191,6 +193,7 @@ public class MainMenu extends ListActivity implements OnClickListener{
 						i = new Intent(MainMenu.this, QuestMenu.class);
 						i.putExtra("tytul", activeQuest.get("title").toString());
 						i.putExtra("opis", activeQuest.get("objectives").toString());
+						i.putExtra("idZadania", activeQuest.get("id").toString());
 						//i.putExtra("idea_id",activeQuest.get("objectives").toString());
 						startActivity(i);	
 						

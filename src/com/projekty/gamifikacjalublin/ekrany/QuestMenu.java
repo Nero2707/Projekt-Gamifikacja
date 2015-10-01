@@ -15,6 +15,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 	private Intent i;
 	private String tytul;
 	private String opis;
+	private String idZadania;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,6 +24,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 		i = getIntent();
 		tytul =  i.getStringExtra("tytul");
 		opis =  i.getStringExtra("opis");
+		idZadania=i.getStringExtra("idZadania");
 		
 		TextView tytulTextView = (TextView) findViewById(R.id.zadanie_tytul);
 		tytulTextView.setText(tytul);
@@ -39,6 +41,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 		switch(v.getId()){
 		case R.id.przycisk_zobacz_mape:
 			i = new Intent(this, MapMenu.class);
+			i.putExtra("idZadania", idZadania);
 			startActivity(i);
 			break;
 		
