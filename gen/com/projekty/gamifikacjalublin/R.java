@@ -491,16 +491,25 @@ containing a value of this type.
         public static final int common_signin_btn_text_normal_light=0x7f02001f;
         public static final int common_signin_btn_text_pressed_dark=0x7f020020;
         public static final int common_signin_btn_text_pressed_light=0x7f020021;
-        public static final int ic_launcher=0x7f020022;
-        public static final int ic_plusone_medium_off_client=0x7f020023;
-        public static final int ic_plusone_small_off_client=0x7f020024;
-        public static final int ic_plusone_standard_off_client=0x7f020025;
-        public static final int ic_plusone_tall_off_client=0x7f020026;
-        public static final int nieaktywny_achievment=0x7f020027;
-        public static final int post_background_style=0x7f020028;
-        public static final int post_border_style=0x7f020029;
-        public static final int powered_by_google_dark=0x7f02002a;
-        public static final int powered_by_google_light=0x7f02002b;
+        public static final int eight=0x7f020022;
+        public static final int five=0x7f020023;
+        public static final int four=0x7f020024;
+        public static final int ic_launcher=0x7f020025;
+        public static final int ic_plusone_medium_off_client=0x7f020026;
+        public static final int ic_plusone_small_off_client=0x7f020027;
+        public static final int ic_plusone_standard_off_client=0x7f020028;
+        public static final int ic_plusone_tall_off_client=0x7f020029;
+        public static final int nieaktywny_achievment=0x7f02002a;
+        public static final int nine=0x7f02002b;
+        public static final int one=0x7f02002c;
+        public static final int post_background_style=0x7f02002d;
+        public static final int post_border_style=0x7f02002e;
+        public static final int powered_by_google_dark=0x7f02002f;
+        public static final int powered_by_google_light=0x7f020030;
+        public static final int seven=0x7f020031;
+        public static final int six=0x7f020032;
+        public static final int three=0x7f020033;
+        public static final int two=0x7f020034;
     }
     public static final class id {
         public static final int ScrollView01=0x7f07004e;
