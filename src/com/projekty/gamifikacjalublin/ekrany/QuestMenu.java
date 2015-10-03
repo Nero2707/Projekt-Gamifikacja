@@ -22,6 +22,9 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Spannable;
+import android.text.Spanned;
+import android.text.style.StrikethroughSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,6 +41,10 @@ public class QuestMenu extends Activity implements OnClickListener{
 	private String opis;
 	private String idZadania;
 	private ProgressDialog pDialog;
+	private TextView tytulTextView;
+	private TextView opisTextView;
+	private View przyciskZglosWykonanie;
+	private View przyciskZobaczMape;
 	//private String activeObjectives;
 	private List<String> activeObjectives;
 	JSONParser jsonParser = new JSONParser();
@@ -51,13 +58,13 @@ public class QuestMenu extends Activity implements OnClickListener{
 		opis =  i.getStringExtra("opis");
 		idZadania=i.getStringExtra("idZadania");
 		
-		TextView tytulTextView = (TextView) findViewById(R.id.zadanie_tytul);
+		tytulTextView = (TextView) findViewById(R.id.zadanie_tytul);
 		tytulTextView.setText(tytul);
-		TextView opisTextView = (TextView) findViewById(R.id.zadanie_opis);
+		opisTextView = (TextView) findViewById(R.id.zadanie_opis);
 		opisTextView.setText(opis);
-		View przyciskZglosWykonanie = findViewById(R.id.przycisk_zglos_wykonanie);
+		przyciskZglosWykonanie = findViewById(R.id.przycisk_zglos_wykonanie);
 		przyciskZglosWykonanie.setOnClickListener(this);
-		View przyciskZobaczMape = findViewById(R.id.przycisk_zobacz_mape);
+		przyciskZobaczMape = findViewById(R.id.przycisk_zobacz_mape);
 		przyciskZobaczMape.setOnClickListener(this);
 		
 		new GetActiveObjectives().execute();
@@ -70,6 +77,12 @@ public class QuestMenu extends Activity implements OnClickListener{
 		case R.id.przycisk_zobacz_mape:
 			i = new Intent(this, MapMenu.class);
 			i.putExtra("idZadania", idZadania);
+			
+			ArrayList<String> stuff = new ArrayList<String>();
+			stuff.addAll(activeObjectives);
+			Log.d("MMtest Opis zadania2",""+stuff.getClass().getName());
+			i.putStringArrayListExtra("activeObjectives",stuff);
+
 			startActivity(i);
 			break;
 		
@@ -133,7 +146,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 			 i = getIntent();
 	    	 pDialog.dismiss();
 	    	 if (file_url != null){
-	    		 List<String> activeObjectives = Arrays.asList(file_url.split("\\s*,\\s*"));
+	    		 activeObjectives = Arrays.asList(file_url.split("\\s*,\\s*"));
 		    	 Log.d("MMtest tablica aktualnych zadan",""+activeObjectives);
 		    	 modifyObjectives(activeObjectives);
 		    	
@@ -151,7 +164,21 @@ public class QuestMenu extends Activity implements OnClickListener{
 	
 	
 	private void modifyObjectives(List<String> activeObjectives){
+		String[] text=opis.split("\\r?\\n");
 		
 		 Log.d("MMtest Opis zadania",""+opis.split("\\r?\\n").length);
+		 
+		 if(Integer.parseInt(idZadania)==2){
+			 String newText="";
+			 for(int i=0;i<text.length;i++){
+				 if(activeObjectives.contains(Integer.toString(i))){	
+					 newText=newText+text[i]+" \u2714 \n";
+				 }else{
+					 newText=newText+text[i]+"\n";
+				 }
+			 }
+			 opisTextView.setText(newText);
+			 
+		 }
 	}
 }	
