@@ -103,6 +103,7 @@ public class MapMenu extends FragmentActivity implements OnMapReadyCallback{
 			if(!activeObjectives.contains("5")){
 				map.addMarker(new MarkerOptions()
 		        .position(new LatLng(51.243247, 22.552099))
+				//.position(new LatLng(51.156640, 22.920312))
 		        .snippet("Cmentarz przy ulicy Lipowej to jeden z najstarszych i najpiêkniejszych cmentarzy w kraju. Za³o¿ony w 1794 roku jako cmentarz katolicki, pod koniec wieku XIX sta³ siê nekropoli¹ wielowyznaniow¹.")
 		        .title("Przystanek 6"))
 		        .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.six));
@@ -127,6 +128,7 @@ public class MapMenu extends FragmentActivity implements OnMapReadyCallback{
 			if(!activeObjectives.contains("8")){
 				map.addMarker(new MarkerOptions()
 		        .position(new LatLng(51.247814, 22.569695000000003))
+		        //.position(new LatLng(51.156640, 22.920312))
 		        .snippet("Historia koœcio³a i klasztoru Dominikanów  siêga XIII wieku. Obecna bry³a powsta³a na prze³omie XVI i XVII stulecia, kiedy odbudowano gotycki budynek zniszczony w czasie po¿aru w 1575 roku.")
 		        .title("Przystanek 9"))
 		        .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.nine));	

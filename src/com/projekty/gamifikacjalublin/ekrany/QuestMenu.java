@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import com.projekty.gamifikacjalublin.R;
 import com.projekty.gamifikacjalublin.R.id;
 import com.projekty.gamifikacjalublin.R.layout;
+import com.projekty.gamifikacjalublin.core.GPSTracker;
 import com.projekty.gamifikacjalublin.core.JSONParser;
 import com.projekty.gamifikacjalublin.ekrany.IdeaMenu.GetVotes;
 
@@ -35,6 +36,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 	private Intent i;
 	private static final String GET_OBJECTIVES_URL = "http://www.lublinquest.ugu.pl/webservice/getcompletedobjectives.php";
 	private static final String SET_OBJECTIVES_URL = "http://www.lublinquest.ugu.pl/webservice/setcompletedobjectives.php";
+	private static final String COMPLETE_QUEST_URL = "http://www.lublinquest.ugu.pl/webservice/completequest.php";
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_MESSAGE = "message";
 	private static final String TAG_COMPLETED_OBJ = "completed_objectives";
@@ -47,7 +49,9 @@ public class QuestMenu extends Activity implements OnClickListener{
 	private View przyciskZglosWykonanie;
 	private View przyciskZobaczMape;
 	//private String activeObjectives;
-	private List<String> activeObjectives;
+	private ArrayList<String> activeObjectives;
+	
+	
 	JSONParser jsonParser = new JSONParser();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +92,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 			break;
 			
 		case R.id.przycisk_zglos_wykonanie:
-			
+			checkCurrentPosition();
 			break;
 		}
 
@@ -150,7 +154,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 			 i = getIntent();
 	    	 pDialog.dismiss();
 	    	 if (file_url != null){
-	    		 activeObjectives = Arrays.asList(file_url.split("\\s*,\\s*"));
+	    		 activeObjectives = new ArrayList<String>(Arrays.asList(file_url.split("\\s*,\\s*")));
 		    	 Log.d("MMtest tablica aktualnych zadan",""+activeObjectives);
 		    	 modifyObjectives(activeObjectives);
 		    	
@@ -164,7 +168,137 @@ public class QuestMenu extends Activity implements OnClickListener{
 	}	
 	
 	
+	class SetActiveObjectives extends AsyncTask<String, String, String> {
+		 @Override
+	        protected void onPreExecute() {
+	            super.onPreExecute();
+	            pDialog = new ProgressDialog(QuestMenu.this);
+	            pDialog.setMessage("Aktualizowanie aktualnych celów zadania");
+	            pDialog.setIndeterminate(false);
+	            pDialog.setCancelable(true);
+	            pDialog.show();
+
+	        }
+		 
+		@Override
+		protected String doInBackground(String... args) {
+			
+			int success;
+			try {
+              // Building Parameters
+              List<NameValuePair> params = new ArrayList<NameValuePair>();
+              SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(QuestMenu.this);
+              params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
+              String newObjectives="";
+              for(int i=0;i<activeObjectives.size();i++){
+            	  newObjectives=newObjectives+activeObjectives.get(i)+",";
+              }
+              params.add(new BasicNameValuePair("completed_objectives", newObjectives));
+              Log.d("request!", "starting");
+
+              //Posting user data to script
+              JSONObject json = jsonParser.makeHttpRequest(
+            		  SET_OBJECTIVES_URL, "POST", params);
+
+              // full json response
+              Log.d("OdpowiedŸ json", json.toString());
+
+              // json success element
+              success = json.getInt(TAG_SUCCESS);
+              if (success == 1) {
+              	//Log.d("Testowy log json", json.getString(TAG_COMPLETED_OBJ));
+              	//activeObjectives=json.getString(TAG_COMPLETED_OBJ);
+              	//Log.d("Testowy log json", activeObjectives);
+              	//finish();
+              	return json.getString(TAG_COMPLETED_OBJ);
+              }else{
+              	Log.d("Nie zaktualizowano celów", json.getString(TAG_MESSAGE));
+              	return json.getString(TAG_MESSAGE);
+
+              }
+          } catch (JSONException e) {
+              e.printStackTrace();
+          }
+			return null;
+		}
+		
+		 protected void onPostExecute(String file_url) {
+			 i = getIntent();
+	    	 pDialog.dismiss();
+	    	 new GetActiveObjectives().execute();
+	    	 
+	}
 	
+	
+	}
+	
+	class CompleteQuest extends AsyncTask<String, String, String> {
+		String id_wykonanego_zadania;
+		
+		
+		public CompleteQuest(String id_wykonanego_zadania){
+			this.id_wykonanego_zadania=id_wykonanego_zadania;
+		}
+		
+		 @Override
+	        protected void onPreExecute() {
+	            super.onPreExecute();
+	            pDialog = new ProgressDialog(QuestMenu.this);
+	            pDialog.setMessage("Wykonanie zadania");
+	            pDialog.setIndeterminate(false);
+	            pDialog.setCancelable(true);
+	            pDialog.show();
+
+	        }
+		 
+		@Override
+		protected String doInBackground(String... args) {
+			
+			int success;
+			try {
+             // Building Parameters
+             List<NameValuePair> params = new ArrayList<NameValuePair>();
+             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(QuestMenu.this);
+             params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
+             params.add(new BasicNameValuePair("quest_id", id_wykonanego_zadania));
+             Log.d("request!", "starting");
+
+             //Posting user data to script
+             JSONObject json = jsonParser.makeHttpRequest(
+            		 COMPLETE_QUEST_URL, "POST", params);
+
+             // full json response
+             Log.d("OdpowiedŸ json", json.toString());
+
+             // json success element
+             success = json.getInt(TAG_SUCCESS);
+             if (success == 1) {
+             	//Log.d("Testowy log json", json.getString(TAG_COMPLETED_OBJ));
+             	//activeObjectives=json.getString(TAG_COMPLETED_OBJ);
+             	//Log.d("Testowy log json", activeObjectives);
+             	//finish();
+             	return json.getString(TAG_MESSAGE);
+             }else{
+             	Log.d("Nie zaktualizowano celów", json.getString(TAG_MESSAGE));
+             	return json.getString(TAG_MESSAGE);
+
+             }
+         } catch (JSONException e) {
+             e.printStackTrace();
+         }
+			return null;
+		}
+		
+		 protected void onPostExecute(String file_url) {
+			 i = getIntent();
+	    	 pDialog.dismiss();
+	    	 finish();
+	    	 //new GetActiveObjectives().execute();
+	    	 
+	}
+	
+	
+	}
 	
 	
 	private void modifyObjectives(List<String> activeObjectives){
@@ -188,9 +322,35 @@ public class QuestMenu extends Activity implements OnClickListener{
 	
 	
 	private void checkCurrentPosition(){
-		Location location;
 		if(Integer.parseInt(idZadania)==2){
-				
+			GPSTracker gps = new GPSTracker(this);
+			if(gps.canGetLocation()){			
+			Location currentLocation=gps.getLocation();
+			Location objectiveLocation=new Location("");
+			
+			Double[] LatitudeQuestMarkers = {51.248156,51.250581,51.25238,51.257839,51.248109,51.243247,51.24606800000001,51.247921,51.247814};
+			Double[] LongitudeQuestMarkers = {22.559524,22.571443,22.572956,22.572699,22.544975,22.552099,22.565789,22.566133,22.569695000000003};
+			
+			for(int i=0;i<LatitudeQuestMarkers.length;i++){
+				objectiveLocation.setLatitude(LatitudeQuestMarkers[i]);
+				objectiveLocation.setLongitude(LongitudeQuestMarkers[i]);
+				if(!activeObjectives.contains(Integer.toString(i)) && currentLocation.distanceTo(objectiveLocation)<500){
+					activeObjectives.add(Integer.toString(i));
+					new SetActiveObjectives().execute();
+					
+					if(activeObjectives.size()==9){
+						activeObjectives.clear();
+						new CompleteQuest("2").execute();
+					}
+					
+					break;
+				}
+			}
+			Log.d("MMtest AKTUALNA LOKALIZACJA"," "+currentLocation);
+			
+			}else{
+				gps.showSettingsAlert();
+			}
 		}
 	}
 	

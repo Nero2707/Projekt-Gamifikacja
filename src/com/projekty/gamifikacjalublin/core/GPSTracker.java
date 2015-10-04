@@ -1,13 +1,16 @@
 package com.projekty.gamifikacjalublin.core;
 
+import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.util.Log;
 
 public class GPSTracker extends Service implements LocationListener{
@@ -128,4 +131,81 @@ public class GPSTracker extends Service implements LocationListener{
 		return null;
 	}
 
+	/**
+     * Function to get latitude
+     * */
+    public double getLatitude(){
+        if(location != null){
+            latitude = location.getLatitude();
+        }
+         
+        // return latitude
+        return latitude;
+    }
+     
+    /**
+     * Function to get longitude
+     * */
+    public double getLongitude(){
+        if(location != null){
+            longitude = location.getLongitude();
+        }
+         
+        // return longitude
+        return longitude;
+    }
+    
+    
+    /**
+     * Function to check if best network provider
+     * @return boolean
+     * */
+    public boolean canGetLocation() {
+        return this.canGetLocation;
+    }
+     
+    /**
+     * Function to show settings alert dialog
+     * */
+    public void showSettingsAlert(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
+      
+        // Setting Dialog Title
+        alertDialog.setTitle("GPS wy³¹czony");
+  
+        // Setting Dialog Message
+        alertDialog.setMessage("GPS nie jest w³¹czony czy przejœæ do strony ustawieñ?");
+  
+        // Setting Icon to Dialog
+        //alertDialog.setIcon(R.drawable.delete);
+  
+        // On pressing Settings button
+        alertDialog.setPositiveButton("Ustawienia", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int which) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                mContext.startActivity(intent);
+            }
+        });
+  
+        // on pressing cancel button
+        alertDialog.setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            dialog.cancel();
+            }
+        });
+  
+        // Showing Alert Message
+        alertDialog.show();
+    }
+    
+    
+    /**
+     * Stop using GPS listener
+     * Calling this function will stop using GPS in your app
+     * */
+    public void stopUsingGPS(){
+        if(locationManager != null){
+            locationManager.removeUpdates(GPSTracker.this);
+        }       
+    }
 }
