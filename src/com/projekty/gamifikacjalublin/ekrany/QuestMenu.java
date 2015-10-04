@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -85,7 +86,10 @@ public class QuestMenu extends Activity implements OnClickListener{
 
 			startActivity(i);
 			break;
-		
+			
+		case R.id.przycisk_zglos_wykonanie:
+			
+			break;
 		}
 
 	}
@@ -181,4 +185,13 @@ public class QuestMenu extends Activity implements OnClickListener{
 			 
 		 }
 	}
+	
+	
+	private void checkCurrentPosition(){
+		Location location;
+		if(Integer.parseInt(idZadania)==2){
+				
+		}
+	}
+	
 }	
