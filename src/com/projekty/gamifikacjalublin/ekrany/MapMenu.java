@@ -128,7 +128,7 @@ public class MapMenu extends FragmentActivity implements OnMapReadyCallback{
 			if(!activeObjectives.contains("8")){
 				map.addMarker(new MarkerOptions()
 		        .position(new LatLng(51.247814, 22.569695000000003))
-		        //.position(new LatLng(51.156640, 22.920312))
+		       // .position(new LatLng(51.220052, 22.578464))
 		        .snippet("Historia koœcio³a i klasztoru Dominikanów  siêga XIII wieku. Obecna bry³a powsta³a na prze³omie XVI i XVII stulecia, kiedy odbudowano gotycki budynek zniszczony w czasie po¿aru w 1575 roku.")
 		        .title("Przystanek 9"))
 		        .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.nine));	

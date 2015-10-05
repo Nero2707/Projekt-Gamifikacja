@@ -15,6 +15,7 @@ import com.projekty.gamifikacjalublin.R.layout;
 import com.projekty.gamifikacjalublin.core.GPSTracker;
 import com.projekty.gamifikacjalublin.core.JSONParser;
 import com.projekty.gamifikacjalublin.ekrany.IdeaMenu.GetVotes;
+import com.projekty.gamifikacjalublin.ekrany.IdeaMenu.ModifyVotes;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -37,6 +38,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 	private static final String GET_OBJECTIVES_URL = "http://www.lublinquest.ugu.pl/webservice/getcompletedobjectives.php";
 	private static final String SET_OBJECTIVES_URL = "http://www.lublinquest.ugu.pl/webservice/setcompletedobjectives.php";
 	private static final String COMPLETE_QUEST_URL = "http://www.lublinquest.ugu.pl/webservice/completequest.php";
+	private static final String MODIFY_POINTS_URL = "http://www.lublinquest.ugu.pl/webservice/modifypoints.php";
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_MESSAGE = "message";
 	private static final String TAG_COMPLETED_OBJ = "completed_objectives";
@@ -273,10 +275,6 @@ public class QuestMenu extends Activity implements OnClickListener{
              // json success element
              success = json.getInt(TAG_SUCCESS);
              if (success == 1) {
-             	//Log.d("Testowy log json", json.getString(TAG_COMPLETED_OBJ));
-             	//activeObjectives=json.getString(TAG_COMPLETED_OBJ);
-             	//Log.d("Testowy log json", activeObjectives);
-             	//finish();
              	return json.getString(TAG_MESSAGE);
              }else{
              	Log.d("Nie zaktualizowano celów", json.getString(TAG_MESSAGE));
@@ -292,8 +290,8 @@ public class QuestMenu extends Activity implements OnClickListener{
 		 protected void onPostExecute(String file_url) {
 			 i = getIntent();
 	    	 pDialog.dismiss();
+	    	 new ModifyPoints(50).execute(); // 50 pkt za zadanie
 	    	 finish();
-	    	 //new GetActiveObjectives().execute();
 	    	 
 	}
 	
@@ -352,6 +350,68 @@ public class QuestMenu extends Activity implements OnClickListener{
 				gps.showSettingsAlert();
 			}
 		}
+	}
+	
+	
+	class ModifyPoints extends AsyncTask<String, String, String> {
+		private String pointsToSave;
+		public ModifyPoints(int points) {
+	        super();
+	        pointsToSave=Integer.toString(points);
+	        
+	    }
+		 @Override
+	        protected void onPreExecute() {
+	            super.onPreExecute();
+	            pDialog = new ProgressDialog(QuestMenu.this);
+	            pDialog.setMessage("Aktualizowanie iloœci g³osów...");
+	            pDialog.setIndeterminate(false);
+	            pDialog.setCancelable(true);
+	           // pDialog.show();
+
+	        }
+		 
+		@Override
+		protected String doInBackground(String... args) {
+			
+			int success;
+			try {
+               // Building Parameters
+               List<NameValuePair> params = new ArrayList<NameValuePair>();
+               SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(QuestMenu.this);
+               params.add(new BasicNameValuePair("points", pointsToSave));
+               params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
+               Log.d("request!", "starting");
+
+               //Posting user data to script
+               JSONObject json = jsonParser.makeHttpRequest(
+            		   MODIFY_POINTS_URL, "POST", params);
+
+               // full json response
+               Log.d("OdpowiedŸ json", json.toString());
+
+               // json success element
+               success = json.getInt(TAG_SUCCESS);
+               if (success == 1) {
+               	Log.d("Zaktualizowano iloœæ punktów!", json.toString());
+               	
+               	//finish();
+               	return json.getString(TAG_MESSAGE);
+               }else{
+               	Log.d("Nie zaktualizowano iloœci g³osów", json.getString(TAG_MESSAGE));
+               	return json.getString(TAG_MESSAGE);
+
+               }
+           } catch (JSONException e) {
+               e.printStackTrace();
+           }
+			return null;
+		}
+		
+		 protected void onPostExecute(String file_url) {
+	    	 pDialog.dismiss();
+	    }
+		
 	}
 	
 }	

@@ -14,6 +14,7 @@ import com.projekty.gamifikacjalublin.R;
 import com.projekty.gamifikacjalublin.R.id;
 import com.projekty.gamifikacjalublin.R.layout;
 import com.projekty.gamifikacjalublin.core.JSONParser;
+import com.projekty.gamifikacjalublin.ekrany.IdeaMenu.ModifyVotes;
 import com.projekty.gamifikacjalublin.ekrany.IdeasListMenu.LoadIdeas;
 
 import android.app.Activity;
@@ -31,6 +32,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -38,11 +40,12 @@ public class MainMenu extends ListActivity implements OnClickListener{
 	private Intent i;
 	private static final String READ_QUEST_URL = "http://lublinquest.ugu.pl/webservice/getactivequest.php";
 	private static final String NEW_QUEST_URL = "http://lublinquest.ugu.pl/webservice/getnewquest.php";
+	private static final String GET_POINTS_URL = "http://www.lublinquest.ugu.pl/webservice/getpoints.php";
 	private static final String TAG_SUCCESS = "success";
     private static final String TAG_TITLE = "title";
     private static final String TAG_QUEST = "quest";
     private static final String TAG_QUEST_ID = "id";
-    private static final String TAG_USERNAME = "username";
+    private static final String TAG_POINTS = "points";
     private static final String TAG_DESCRIPTION = "description";
     private static final String TAG_OBJECTIVES = "objectives";
     private static final String TAG_MESSAGE = "message";
@@ -51,6 +54,7 @@ public class MainMenu extends ListActivity implements OnClickListener{
     private ArrayList<HashMap<String, String>> mQuestsList;
     View przyciskListaPomyslow; 
     View przyciskOsiagniecia;
+    private TextView punktyTextView;
     private View przyciskPobierzZadanie;
     private JSONParser jParser = new JSONParser();
 	@Override
@@ -64,13 +68,18 @@ public class MainMenu extends ListActivity implements OnClickListener{
 		przyciskListaPomyslow.setOnClickListener(this);
 		przyciskPobierzZadanie = findViewById(R.id.przycisk_pobierz_zadanie);
 		przyciskPobierzZadanie.setOnClickListener(this);
+		
+		
+		//new GetPoints().execute();
 	}
 	 @Override
 	    protected void onResume() {
-	    	// TODO Auto-generated method stub
+	    	
 	    	super.onResume();
-	    	//loading the comments via AsyncTask
+	    	
+	    	new GetPoints().execute();
 	    	new LoadActiveQuest().execute();
+	    	
 	    }
 	 
 	@Override
@@ -291,6 +300,66 @@ public class MainMenu extends ListActivity implements OnClickListener{
 	            }
 
 	        }
+		
+	}
+	
+	
+	
+	
+	class GetPoints extends AsyncTask<String, String, String> {
+		
+		 @Override
+	        protected void onPreExecute() {
+	            super.onPreExecute();
+	            pDialog = new ProgressDialog(MainMenu.this);
+	            pDialog.setMessage("Aktualizowanie iloœci punktów...");
+	            pDialog.setIndeterminate(false);
+	            pDialog.setCancelable(true);
+	           // pDialog.show();
+
+	        }
+		 
+		@Override
+		protected String doInBackground(String... args) {
+			
+			int success;
+			try {
+               // Building Parameters
+               List<NameValuePair> params = new ArrayList<NameValuePair>();
+               SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainMenu.this);
+               params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
+               Log.d("request!", "starting");
+
+               //Posting user data to script
+               JSONObject json = jParser.makeHttpRequest(
+            		   GET_POINTS_URL, "POST", params);
+
+               // full json response
+               Log.d("OdpowiedŸ json", json.toString());
+
+               // json success element
+               success = json.getInt(TAG_SUCCESS);
+               if (success == 1) {
+               	Log.d("Zaktualizowano iloœæ g³osów!", json.toString());
+               	
+               	//finish();
+               	return json.getString(TAG_POINTS);
+               }else{
+               	Log.d("Nie zaktualizowano iloœci g³osów", json.getString(TAG_MESSAGE));
+               	return json.getString(TAG_MESSAGE);
+
+               }
+           } catch (JSONException e) {
+               e.printStackTrace();
+           }
+			return null;
+		}
+		
+		 protected void onPostExecute(String file_url) {
+	    	 pDialog.dismiss();
+	    	 punktyTextView = (TextView) findViewById(R.id.punkty_tytul);
+          	 punktyTextView.setText("Punkty: "+file_url);
+	    }
 		
 	}
 }
