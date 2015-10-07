@@ -15,7 +15,7 @@
 	<string name="etykieta_zadania_innych">Wyświetl pomysły innych użytkowników</string>
     <string name="lista_zadan_tytul">Aktualna lista zadań:</string>
     <string name="punkty_tytul">Punkty: 0</string>
-    <string name="etykieta_zobacz_mape">Zobacz mapę</string>
+    <string name="etykieta_zobacz_mape">Zobacz mapę zadania</string>
     <string name="osiagniecie1_tytul">Do okoła Lublina</string>
 	<string name="osiagniecie1_opis">Przejdź Lublin do okoła w 10 min</string>
 	<string name="osiagniecie2_tytul">Do okoła Lublina 2</string>
@@ -27,7 +27,7 @@
 	<string name="osiagniecie5_tytul">Do okoła Lublina 5</string>
 	<string name="osiagniecie5_opis">Przejdź 5 razy Lublin do okoła</string>
 	
-	<string name="etykieta_zglos_wykonanie">Zgłoś wykonanie zadania</string>
+	<string name="etykieta_zglos_wykonanie">Zsynchronizuj miejsce</string>
 	
 	<string name="lista_pomyslow_tytul">Pomysły na rozwój miasta zgłoszone przez innych</string>
 	<string name="etykieta_dodaj_pomysl">Dodaj nowy pomysł</string>
@@ -43,4 +43,6 @@
 	
 	 <string name="post_idea">Dodaj pomysł</string>
 	 <string name="read_idea_title">Ostatnie pomysły</string>
+	 
+	 <string name="zadanie1_hint">Wpisz hasło</string>
 </resources>

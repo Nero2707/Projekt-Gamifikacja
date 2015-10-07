@@ -2,7 +2,9 @@ package com.projekty.gamifikacjalublin.ekrany;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -31,6 +33,9 @@ import android.text.style.StrikethroughSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class QuestMenu extends Activity implements OnClickListener{
@@ -42,14 +47,20 @@ public class QuestMenu extends Activity implements OnClickListener{
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_MESSAGE = "message";
 	private static final String TAG_COMPLETED_OBJ = "completed_objectives";
+	private static final String QUEST_PASSWORD="QUEST";
+	private  HashMap<String, TextView> letters_fields=new HashMap<String, TextView>();
+	private int punktyZaZadanie;
 	private String tytul;
 	private String opis;
 	private String idZadania;
 	private ProgressDialog pDialog;
 	private TextView tytulTextView;
 	private TextView opisTextView;
-	private View przyciskZglosWykonanie;
-	private View przyciskZobaczMape;
+	private Button przyciskZglosWykonanie;
+	private Button przyciskZobaczMape;
+	private LinearLayout lettersLayout;
+	private EditText hasloZadania;
+	
 	//private String activeObjectives;
 	private ArrayList<String> activeObjectives;
 	
@@ -69,12 +80,28 @@ public class QuestMenu extends Activity implements OnClickListener{
 		tytulTextView.setText(tytul);
 		opisTextView = (TextView) findViewById(R.id.zadanie_opis);
 		opisTextView.setText(opis);
-		przyciskZglosWykonanie = findViewById(R.id.przycisk_zglos_wykonanie);
+		przyciskZglosWykonanie = (Button) findViewById(R.id.przycisk_zglos_wykonanie);
 		przyciskZglosWykonanie.setOnClickListener(this);
-		przyciskZobaczMape = findViewById(R.id.przycisk_zobacz_mape);
+		przyciskZobaczMape = (Button) findViewById(R.id.przycisk_zobacz_mape);
 		przyciskZobaczMape.setOnClickListener(this);
-		
+		hasloZadania = (EditText)findViewById(R.id.pole_zadanie1_haslo);
+		hasloZadania.setVisibility(View.INVISIBLE);
+		lettersLayout=(LinearLayout) findViewById(R.id.letters_layout);
+		lettersLayout.setVisibility(View.INVISIBLE);
 		new GetActiveObjectives().execute();
+		
+		if(Integer.parseInt(idZadania)==1){
+			hasloZadania.setVisibility(View.VISIBLE);
+			lettersLayout.setVisibility(View.VISIBLE);
+			przyciskZobaczMape.setText("Zg³oœ wykonanie zadania");
+			letters_fields.put("letter_0",(TextView) findViewById(R.id.letter_1));
+			letters_fields.put("letter_1",(TextView) findViewById(R.id.letter_2));
+			letters_fields.put("letter_2",(TextView) findViewById(R.id.letter_3));
+			letters_fields.put("letter_3",(TextView) findViewById(R.id.letter_4));
+			letters_fields.put("letter_4",(TextView) findViewById(R.id.letter_5));
+			
+		}
+
 		
 	}
 	
@@ -82,19 +109,21 @@ public class QuestMenu extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.przycisk_zobacz_mape:
-			i = new Intent(this, MapMenu.class);
-			i.putExtra("idZadania", idZadania);
+			if(Integer.parseInt(idZadania)==1){
+				
+			}else{
+				i = new Intent(this, MapMenu.class);
+				i.putExtra("idZadania", idZadania);		
+				ArrayList<String> stuff = new ArrayList<String>();
+				stuff.addAll(activeObjectives);
+				i.putStringArrayListExtra("activeObjectives",stuff);
+				startActivity(i);
+			}
 			
-			ArrayList<String> stuff = new ArrayList<String>();
-			stuff.addAll(activeObjectives);
-			Log.d("MMtest Opis zadania2",""+stuff.getClass().getName());
-			i.putStringArrayListExtra("activeObjectives",stuff);
-
-			startActivity(i);
 			break;
 			
 		case R.id.przycisk_zglos_wykonanie:
-			checkCurrentPosition();
+				checkCurrentPosition();
 			break;
 		}
 
@@ -157,9 +186,10 @@ public class QuestMenu extends Activity implements OnClickListener{
 	    	 pDialog.dismiss();
 	    	 if (file_url != null){
 	    		 activeObjectives = new ArrayList<String>(Arrays.asList(file_url.split("\\s*,\\s*")));
-		    	 Log.d("MMtest tablica aktualnych zadan",""+activeObjectives);
 		    	 modifyObjectives(activeObjectives);
-		    	
+		    	 if(Integer.parseInt(idZadania)==1){
+		    		 showLetters(activeObjectives);
+		    	 }
 		    	
 	            }
 	    	
@@ -193,7 +223,10 @@ public class QuestMenu extends Activity implements OnClickListener{
               params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
               String newObjectives="";
               for(int i=0;i<activeObjectives.size();i++){
-            	  newObjectives=newObjectives+activeObjectives.get(i)+",";
+            	  if(activeObjectives.get(i)!=""){
+            		  newObjectives=newObjectives+activeObjectives.get(i)+","; 
+            	  }
+            	  
               }
               params.add(new BasicNameValuePair("completed_objectives", newObjectives));
               Log.d("request!", "starting");
@@ -290,7 +323,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 		 protected void onPostExecute(String file_url) {
 			 i = getIntent();
 	    	 pDialog.dismiss();
-	    	 new ModifyPoints(50).execute(); // 50 pkt za zadanie
+	    	 new ModifyPoints(punktyZaZadanie).execute(); // 50 pkt za zadanie
 	    	 finish();
 	    	 
 	}
@@ -302,7 +335,6 @@ public class QuestMenu extends Activity implements OnClickListener{
 	private void modifyObjectives(List<String> activeObjectives){
 		String[] text=opis.split("\\r?\\n");
 		
-		 Log.d("MMtest Opis zadania",""+opis.split("\\r?\\n").length);
 		 
 		 if(Integer.parseInt(idZadania)==2){
 			 String newText="";
@@ -318,9 +350,47 @@ public class QuestMenu extends Activity implements OnClickListener{
 		 }
 	}
 	
+	private void showLetters(ArrayList<String> activeObjectives){
+		for(int i=0;i<activeObjectives.size();i++){
+			    if(activeObjectives.get(i)!=""){
+			    	
+			        Character litera_do_wstawienia = QUEST_PASSWORD.charAt(Character.getNumericValue(activeObjectives.get(i).charAt(0)));
+			        
+			        
+			    	letters_fields.get("letter_"+Integer.parseInt(activeObjectives.get(i))).setText(String.valueOf(litera_do_wstawienia));
+			    	
+			    }
+			}
+	}
 	
 	private void checkCurrentPosition(){
-		if(Integer.parseInt(idZadania)==2){
+		if(Integer.parseInt(idZadania)==1){
+			GPSTracker gps = new GPSTracker(this);
+			if(gps.canGetLocation()){
+				Location currentLocation=gps.getLocation();
+				Location objectiveLocation=new Location("");
+				
+				Double[] LatitudeQuestMarkers = {51.253470,51.249676,51.250191,51.248125,51.250941};
+				Double[] LongitudeQuestMarkers = {22.572297,22.570110,22.575093,22.559492,22.556014};
+				//Double[] LatitudeQuestMarkers = {51.253470,51.249676,51.250191,51.212144,51.250941};
+				//Double[] LongitudeQuestMarkers = {22.572297,22.570110,22.575093,22.587530,22.556014};
+				
+				for(int i=0;i<LatitudeQuestMarkers.length;i++){
+					objectiveLocation.setLatitude(LatitudeQuestMarkers[i]);
+					objectiveLocation.setLongitude(LongitudeQuestMarkers[i]);
+					if(!activeObjectives.contains(Integer.toString(i)) && currentLocation.distanceTo(objectiveLocation)<500){
+						activeObjectives.add(Integer.toString(i));
+						new SetActiveObjectives().execute();
+						showLetters(activeObjectives);
+						if(activeObjectives.size()==5){
+							activeObjectives.clear();
+							punktyZaZadanie=100;
+							new CompleteQuest("1").execute();
+						}
+					}
+				}
+			}
+		}else if(Integer.parseInt(idZadania)==2){
 			GPSTracker gps = new GPSTracker(this);
 			if(gps.canGetLocation()){			
 			Location currentLocation=gps.getLocation();
@@ -338,6 +408,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 					
 					if(activeObjectives.size()==9){
 						activeObjectives.clear();
+						punktyZaZadanie=50;
 						new CompleteQuest("2").execute();
 					}
 					
@@ -349,6 +420,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 			}else{
 				gps.showSettingsAlert();
 			}
+			
 		}
 	}
 	

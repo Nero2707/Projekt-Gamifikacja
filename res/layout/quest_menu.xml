@@ -13,9 +13,73 @@
         android:text="Domyślny tytuł zadania"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+     <Space
+  android:layout_width="1dp"
+  android:layout_height="40dp"/>
+     
+      <LinearLayout
+        android:id="@+id/letters_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+		      <TextView
+		        android:id="@+id/letter_1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+		        android:textColor="@color/red"
+		        android:paddingLeft="65dp"		        
+		        android:text="_"
+		        android:textAppearance="?android:attr/textAppearanceLarge" />
+		      <TextView
+		        android:id="@+id/letter_2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+		        android:textColor="@color/red"
+		        android:paddingLeft="35dp"		        
+		        android:text="_"
+		        android:textAppearance="?android:attr/textAppearanceLarge" />
+		      <TextView
+		        android:id="@+id/letter_3"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+		        android:textColor="@color/red"
+		        android:paddingLeft="35dp"		        
+		        android:text="_"
+		        android:textAppearance="?android:attr/textAppearanceLarge" />
+		      <TextView
+		        android:id="@+id/letter_4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+		        android:textColor="@color/red"
+		        android:paddingLeft="35dp"		        
+		        android:text="_"
+		        android:textAppearance="?android:attr/textAppearanceLarge" />
+		       <TextView
+		        android:id="@+id/letter_5"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+		        android:textColor="@color/red"
+		        android:paddingLeft="35dp"		        
+		        android:text="_"
+		        android:textAppearance="?android:attr/textAppearanceLarge" />
+         </LinearLayout>
+         <Space
+  android:layout_width="1dp"
+  android:layout_height="20dp"/>
+     <EditText
+	        android:id="@+id/pole_zadanie1_haslo"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/zadanie1_hint"
+	        android:inputType="text" />
+     
     <Space
   android:layout_width="1dp"
-  android:layout_height="130dp"/>
+  android:layout_height="25dp"/>
     <TextView
         android:id="@+id/zadanie_opis"
         android:layout_width="match_parent"

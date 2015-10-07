@@ -421,8 +421,9 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f080006;
         public static final int common_signin_btn_light_text_focused=0x7f080007;
         public static final int common_signin_btn_light_text_pressed=0x7f080005;
-        public static final int common_signin_btn_text_dark=0x7f080018;
-        public static final int common_signin_btn_text_light=0x7f080019;
+        public static final int common_signin_btn_text_dark=0x7f080019;
+        public static final int common_signin_btn_text_light=0x7f08001a;
+        public static final int red=0x7f080018;
         public static final int tlo=0x7f080017;
         public static final int wallet_bright_foreground_disabled_holo_light=0x7f08000f;
         /** 
@@ -442,8 +443,8 @@ containing a value of this type.
         public static final int wallet_hint_foreground_holo_light=0x7f080011;
         public static final int wallet_holo_blue_light=0x7f080015;
         public static final int wallet_link_text_light=0x7f080016;
-        public static final int wallet_primary_text_holo_light=0x7f08001a;
-        public static final int wallet_secondary_text_holo_dark=0x7f08001b;
+        public static final int wallet_primary_text_holo_light=0x7f08001b;
+        public static final int wallet_secondary_text_holo_dark=0x7f08001c;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -513,13 +514,13 @@ containing a value of this type.
     }
     public static final class id {
         public static final int ScrollView01=0x7f07004e;
-        public static final int action_settings=0x7f07005e;
+        public static final int action_settings=0x7f070065;
         public static final int adjust_height=0x7f070001;
         public static final int adjust_width=0x7f070002;
         public static final int book_now=0x7f070012;
         public static final int bottom_layover=0x7f070047;
-        public static final int box=0x7f070057;
-        public static final int box2=0x7f070058;
+        public static final int box=0x7f07005e;
+        public static final int box2=0x7f07005f;
         public static final int buyButton=0x7f07000e;
         public static final int buy_now=0x7f070013;
         public static final int buy_with=0x7f070014;
@@ -542,21 +543,28 @@ containing a value of this type.
         public static final int imageView5=0x7f070034;
         public static final int info_description=0x7f070043;
         public static final int info_title=0x7f070042;
+        public static final int letter_1=0x7f070052;
+        public static final int letter_2=0x7f070053;
+        public static final int letter_3=0x7f070054;
+        public static final int letter_4=0x7f070055;
+        public static final int letter_5=0x7f070056;
+        public static final int letters_layout=0x7f070051;
         public static final int lista_pomyslow_tytul=0x7f07003f;
         public static final int lista_zadan_tytul=0x7f070046;
         public static final int logo_only=0x7f070018;
         public static final int map=0x7f07004c;
         public static final int mapa_tytul=0x7f07004b;
         public static final int match_parent=0x7f070010;
-        public static final int message=0x7f07005a;
+        public static final int message=0x7f070061;
         public static final int monochrome=0x7f07001e;
         public static final int none=0x7f070003;
         public static final int normal=0x7f070005;
         public static final int opis_pomyslu=0x7f07004f;
         public static final int pole_haslo=0x7f070037;
-        public static final int pole_haslo_register=0x7f070055;
+        public static final int pole_haslo_register=0x7f07005c;
         public static final int pole_login=0x7f070036;
-        public static final int pole_login_register=0x7f070054;
+        public static final int pole_login_register=0x7f07005b;
+        public static final int pole_zadanie1_haslo=0x7f070057;
         public static final int pomysl_glosy=0x7f07003c;
         public static final int pomysl_opis=0x7f07003b;
         public static final int pomysl_test_tytul=0x7f070040;
@@ -570,12 +578,12 @@ containing a value of this type.
         public static final int przycisk_zadania_innych=0x7f07004a;
         public static final int przycisk_zaloguj=0x7f070038;
         public static final int przycisk_zarejestruj=0x7f070039;
-        public static final int przycisk_zarejestruj_register=0x7f070056;
-        public static final int przycisk_zglos_wykonanie=0x7f070053;
-        public static final int przycisk_zobacz_mape=0x7f070052;
+        public static final int przycisk_zarejestruj_register=0x7f07005d;
+        public static final int przycisk_zglos_wykonanie=0x7f07005a;
+        public static final int przycisk_zobacz_mape=0x7f070059;
         public static final int punkty_tytul=0x7f070045;
-        public static final int quest_description=0x7f07005d;
-        public static final int quest_title=0x7f07005c;
+        public static final int quest_description=0x7f070064;
+        public static final int quest_title=0x7f070063;
         public static final int sandbox=0x7f07000b;
         public static final int satellite=0x7f070006;
         public static final int selectionDetails=0x7f07000f;
@@ -600,12 +608,12 @@ containing a value of this type.
         public static final int textView8=0x7f07002e;
         public static final int textView9=0x7f07002f;
         public static final int teyxtView12=0x7f070035;
-        public static final int title=0x7f070059;
+        public static final int title=0x7f070060;
         public static final int top_layover=0x7f070048;
         public static final int tytul_pomyslu=0x7f07004d;
-        public static final int username=0x7f07005b;
+        public static final int username=0x7f070062;
         public static final int wrap_content=0x7f070011;
-        public static final int zadanie_opis=0x7f070051;
+        public static final int zadanie_opis=0x7f070058;
         public static final int zadanie_tytul=0x7f070050;
     }
     public static final class integer {
@@ -806,6 +814,7 @@ containing a value of this type.
          [CHAR LIMIT=30] 
          */
         public static final int wallet_buy_button_place_holder=0x7f06002b;
+        public static final int zadanie1_hint=0x7f06004f;
         public static final int zaloguj_hint=0x7f060032;
     }
     public static final class style {
