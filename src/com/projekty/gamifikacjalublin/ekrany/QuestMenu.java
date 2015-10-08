@@ -4,20 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.projekty.gamifikacjalublin.R;
-import com.projekty.gamifikacjalublin.R.id;
-import com.projekty.gamifikacjalublin.R.layout;
-import com.projekty.gamifikacjalublin.core.GPSTracker;
-import com.projekty.gamifikacjalublin.core.JSONParser;
-import com.projekty.gamifikacjalublin.ekrany.IdeaMenu.GetVotes;
-import com.projekty.gamifikacjalublin.ekrany.IdeaMenu.ModifyVotes;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -27,9 +18,6 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.text.Spannable;
-import android.text.Spanned;
-import android.text.style.StrikethroughSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,6 +25,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.projekty.gamifikacjalublin.R;
+import com.projekty.gamifikacjalublin.core.GPSTracker;
+import com.projekty.gamifikacjalublin.core.JSONParser;
 
 public class QuestMenu extends Activity implements OnClickListener{
 	private Intent i;
@@ -110,7 +103,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 		switch(v.getId()){
 		case R.id.przycisk_zobacz_mape:
 			if(Integer.parseInt(idZadania)==1){
-				
+				checkPassword();
 			}else{
 				i = new Intent(this, MapMenu.class);
 				i.putExtra("idZadania", idZadania);		
@@ -372,8 +365,8 @@ public class QuestMenu extends Activity implements OnClickListener{
 				
 				Double[] LatitudeQuestMarkers = {51.253470,51.249676,51.250191,51.248125,51.250941};
 				Double[] LongitudeQuestMarkers = {22.572297,22.570110,22.575093,22.559492,22.556014};
-				//Double[] LatitudeQuestMarkers = {51.253470,51.249676,51.250191,51.212144,51.250941};
-				//Double[] LongitudeQuestMarkers = {22.572297,22.570110,22.575093,22.587530,22.556014};
+				//Double[] LatitudeQuestMarkers = {51.253470,51.249676,51.250191,51.248125,51.232540};
+				//Double[] LongitudeQuestMarkers = {22.572297,22.570110,22.575093,22.559492,22.610090};
 				
 				for(int i=0;i<LatitudeQuestMarkers.length;i++){
 					objectiveLocation.setLatitude(LatitudeQuestMarkers[i]);
@@ -384,7 +377,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 						showLetters(activeObjectives);
 						if(activeObjectives.size()==5){
 							activeObjectives.clear();
-							punktyZaZadanie=100;
+							//punktyZaZadanie=100;
 							new CompleteQuest("1").execute();
 						}
 					}
@@ -398,6 +391,9 @@ public class QuestMenu extends Activity implements OnClickListener{
 			
 			Double[] LatitudeQuestMarkers = {51.248156,51.250581,51.25238,51.257839,51.248109,51.243247,51.24606800000001,51.247921,51.247814};
 			Double[] LongitudeQuestMarkers = {22.559524,22.571443,22.572956,22.572699,22.544975,22.552099,22.565789,22.566133,22.569695000000003};
+			
+			//Double[] LatitudeQuestMarkers = {51.248156,51.250581,51.25238,51.257839,51.248109,51.243247,51.24606800000001,51.247921,51.232540};
+			//Double[] LongitudeQuestMarkers = {22.559524,22.571443,22.572956,22.572699,22.544975,22.552099,22.565789,22.566133,22.610090};
 			
 			for(int i=0;i<LatitudeQuestMarkers.length;i++){
 				objectiveLocation.setLatitude(LatitudeQuestMarkers[i]);
@@ -422,6 +418,25 @@ public class QuestMenu extends Activity implements OnClickListener{
 			}
 			
 		}
+	}
+	
+	public void checkPassword(){
+		int punkty_do_przyznania=0;
+		 if(hasloZadania.getText().toString().toLowerCase().equals(QUEST_PASSWORD.toString().toLowerCase())){
+			 for(int i=0;i<QUEST_PASSWORD.length();i++){
+				if(letters_fields.get("letter_"+i).getText().equals("_")){
+					punkty_do_przyznania=punkty_do_przyznania+20;
+				}
+			}
+			activeObjectives.clear();
+			punktyZaZadanie=punkty_do_przyznania;
+			new CompleteQuest("1").execute();
+			 
+			 
+		 }else{
+			 Toast.makeText(QuestMenu.this, "Niepoprawne has³o", Toast.LENGTH_LONG).show();
+		 }
+			
 	}
 	
 	

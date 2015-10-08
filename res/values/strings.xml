@@ -16,16 +16,16 @@
     <string name="lista_zadan_tytul">Aktualna lista zadań:</string>
     <string name="punkty_tytul">Punkty: 0</string>
     <string name="etykieta_zobacz_mape">Zobacz mapę zadania</string>
-    <string name="osiagniecie1_tytul">Do okoła Lublina</string>
-	<string name="osiagniecie1_opis">Przejdź Lublin do okoła w 10 min</string>
-	<string name="osiagniecie2_tytul">Do okoła Lublina 2</string>
-	<string name="osiagniecie2_opis">Przejdź 2 razy Lublin do okoła</string>
-    <string name="osiagniecie3_tytul">Do okoła Lublina 3</string>
-	<string name="osiagniecie3_opis">Przejdź 3 razy Lublin do okoła</string>
-	<string name="osiagniecie4_tytul">Do okoła Lublina 4</string>
-	<string name="osiagniecie4_opis">Przejdź 4 razy Lublin do okoła</string>
-	<string name="osiagniecie5_tytul">Do okoła Lublina 5</string>
-	<string name="osiagniecie5_opis">Przejdź 5 razy Lublin do okoła</string>
+    <string name="osiagniecie1_tytul">Dobry początek</string>
+	<string name="osiagniecie1_opis">Wykonaj swoje pierwsze zadanie</string>
+	<string name="osiagniecie2_tytul">Każdy głos się liczy</string>
+	<string name="osiagniecie2_opis">Zagłosuj na pomysł innej osoby</string>
+    <string name="osiagniecie3_tytul">I ty możesz mieć wpływ</string>
+	<string name="osiagniecie3_opis">Umieść swój pomysł na rozwój miasta</string>
+	<string name="osiagniecie4_tytul">W kupie siła</string>
+	<string name="osiagniecie4_opis">Zdobądź przynajmniej 10 głosów dodanich na swój pomysł</string>
+	<string name="osiagniecie5_tytul">Zgaduj-zgadula</string>
+	<string name="osiagniecie5_opis">Rozwiąż hasło z zadania 2 przy odkrytych maksymalnie 2 literach</string>
 	
 	<string name="etykieta_zglos_wykonanie">Zsynchronizuj miejsce</string>
 	
