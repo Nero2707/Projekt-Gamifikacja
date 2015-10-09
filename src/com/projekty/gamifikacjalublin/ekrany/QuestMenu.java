@@ -40,7 +40,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_MESSAGE = "message";
 	private static final String TAG_COMPLETED_OBJ = "completed_objectives";
-	private static final String QUEST_PASSWORD="QUEST";
+	private static final String QUEST_PASSWORD="LUBLIN";
 	private  HashMap<String, TextView> letters_fields=new HashMap<String, TextView>();
 	private int punktyZaZadanie;
 	private String tytul;
@@ -92,7 +92,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 			letters_fields.put("letter_2",(TextView) findViewById(R.id.letter_3));
 			letters_fields.put("letter_3",(TextView) findViewById(R.id.letter_4));
 			letters_fields.put("letter_4",(TextView) findViewById(R.id.letter_5));
-			
+			letters_fields.put("letter_5",(TextView) findViewById(R.id.letter_6));
 		}
 
 		
@@ -363,8 +363,8 @@ public class QuestMenu extends Activity implements OnClickListener{
 				Location currentLocation=gps.getLocation();
 				Location objectiveLocation=new Location("");
 				
-				Double[] LatitudeQuestMarkers = {51.253470,51.249676,51.250191,51.248125,51.250941};
-				Double[] LongitudeQuestMarkers = {22.572297,22.570110,22.575093,22.559492,22.556014};
+				Double[] LatitudeQuestMarkers = {51.253470,51.249676,51.250191,51.248125,51.250941,51.247508};
+				Double[] LongitudeQuestMarkers = {22.572297,22.570110,22.575093,22.559492,22.556014,22.566254};
 				//Double[] LatitudeQuestMarkers = {51.253470,51.249676,51.250191,51.248125,51.232540};
 				//Double[] LongitudeQuestMarkers = {22.572297,22.570110,22.575093,22.559492,22.610090};
 				
