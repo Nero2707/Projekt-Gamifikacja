@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +44,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 	private static final String TAG_COMPLETED_OBJ = "completed_objectives";
 	private static final String QUEST_PASSWORD="LUBLIN";
 	private  HashMap<String, TextView> letters_fields=new HashMap<String, TextView>();
+	private  HashMap<String, String> images_names=new HashMap<String, String>();
 	private int punktyZaZadanie;
 	private String tytul;
 	private String opis;
@@ -50,6 +52,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 	private ProgressDialog pDialog;
 	private TextView tytulTextView;
 	private TextView opisTextView;
+	private ImageView objectiveImageView;
 	private Button przyciskZglosWykonanie;
 	private Button przyciskZobaczMape;
 	private LinearLayout lettersLayout;
@@ -78,6 +81,8 @@ public class QuestMenu extends Activity implements OnClickListener{
 		przyciskZglosWykonanie.setOnClickListener(this);
 		przyciskZobaczMape = (Button) findViewById(R.id.przycisk_zobacz_mape);
 		przyciskZobaczMape.setOnClickListener(this);
+		objectiveImageView=(ImageView) findViewById(R.id.objectiveImageView);
+		objectiveImageView.setVisibility(View.INVISIBLE);
 		hasloZadania = (EditText)findViewById(R.id.pole_zadanie1_haslo);
 		hasloZadania.setVisibility(View.INVISIBLE);
 		lettersLayout=(LinearLayout) findViewById(R.id.letters_layout);
@@ -94,6 +99,14 @@ public class QuestMenu extends Activity implements OnClickListener{
 			letters_fields.put("letter_3",(TextView) findViewById(R.id.letter_4));
 			letters_fields.put("letter_4",(TextView) findViewById(R.id.letter_5));
 			letters_fields.put("letter_5",(TextView) findViewById(R.id.letter_6));
+		}else if(Integer.parseInt(idZadania)==3){
+			images_names.put("objective_1","objective_1");
+			images_names.put("objective_2","objective_2");
+			przyciskZobaczMape.setVisibility(View.INVISIBLE);
+			opisTextView.setVisibility(View.INVISIBLE);
+			objectiveImageView=(ImageView) findViewById(R.id.objectiveImageView);
+			objectiveImageView.setVisibility(View.VISIBLE);
+			
 		}
 
 		
@@ -105,7 +118,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 		case R.id.przycisk_zobacz_mape:
 			if(Integer.parseInt(idZadania)==1){
 				checkPassword();
-			}else{
+			}else if(Integer.parseInt(idZadania)==2){
 				i = new Intent(this, MapMenu.class);
 				i.putExtra("idZadania", idZadania);		
 				ArrayList<String> stuff = new ArrayList<String>();
@@ -113,11 +126,9 @@ public class QuestMenu extends Activity implements OnClickListener{
 				i.putStringArrayListExtra("activeObjectives",stuff);
 				startActivity(i);
 			}
-			
 			break;
 			
 		case R.id.przycisk_zglos_wykonanie:
-			
 				checkCurrentPosition();
 			break;
 		}
@@ -184,6 +195,8 @@ public class QuestMenu extends Activity implements OnClickListener{
 		    	 modifyObjectives(activeObjectives);
 		    	 if(Integer.parseInt(idZadania)==1){
 		    		 showLetters(activeObjectives);
+		    	 }else if(Integer.parseInt(idZadania)==3){
+		    		 showObjectiveImage(activeObjectives);
 		    	 }
 		    	
 	            }
@@ -448,6 +461,17 @@ public class QuestMenu extends Activity implements OnClickListener{
 			
 	}
 	
+	
+	public void showObjectiveImage(ArrayList<String> activeObjectives){
+		Log.d("MMtest aktywne cele"," "+activeObjectives.size());
+		if(activeObjectives!=null && activeObjectives.size()>0 && !activeObjectives.isEmpty()){
+			if(activeObjectives.get(0)!=""){
+				objectiveImageView.setImageResource(QuestMenu.this.getResources().getIdentifier("objective_"+(Integer.parseInt(activeObjectives.get(activeObjectives.size()-1))+1), "drawable",QuestMenu.this.getPackageName())); 	
+			}
+
+		}
+		
+	}
 	
 	class ModifyPoints extends AsyncTask<String, String, String> {
 		private String pointsToSave;
