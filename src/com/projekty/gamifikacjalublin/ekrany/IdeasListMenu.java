@@ -161,6 +161,7 @@ public class IdeasListMenu extends ListActivity implements OnClickListener{
 						i.putExtra("tytul",chosenIdea.get("title").toString());
 						i.putExtra("opis", chosenIdea.get("message").toString());
 						i.putExtra("idea_id",chosenIdea.get("idea_id").toString());
+						i.putExtra("autor",chosenIdea.get("username").toString());
 						startActivity(i);
 						// This method is triggered if an item is click within our
 						// list. For our example we won't be using this, but

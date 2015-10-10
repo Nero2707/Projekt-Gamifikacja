@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import com.projekty.gamifikacjalublin.R;
 import com.projekty.gamifikacjalublin.R.id;
 import com.projekty.gamifikacjalublin.R.layout;
+import com.projekty.gamifikacjalublin.core.CompleteAchievment;
 import com.projekty.gamifikacjalublin.core.JSONParser;
 import com.projekty.gamifikacjalublin.ekrany.MainActivity.AttemptLogin;
 import com.projekty.gamifikacjalublin.ekrany.RegisterMenu.CreateUser;
@@ -34,6 +35,7 @@ public class IdeaMenu extends Activity implements OnClickListener{
 	private int voted=0;
 	private String tytul;
 	private String opis;
+	private String autor;
 	private ProgressDialog pDialog;
 	private TextView tytulTextView,opisTextView,glosyTextView;
 	private View przyciskPopieram,przyciskNiePopieram;
@@ -54,6 +56,7 @@ public class IdeaMenu extends Activity implements OnClickListener{
 		i = getIntent();
 		tytul =  i.getStringExtra("tytul");
 		opis =  i.getStringExtra("opis");
+		autor= i.getStringExtra("autor");
 		tytulTextView = (TextView) findViewById(R.id.pomysl_tytul);
 		tytulTextView.setText(tytul);
 		opisTextView = (TextView) findViewById(R.id.pomysl_opis);
@@ -78,10 +81,16 @@ public class IdeaMenu extends Activity implements OnClickListener{
 		if (id == R.id.przycisk_popieram) {
 			votes=votes+1;
 			new ModifyVotes(votes).execute();
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(IdeaMenu.this);
+			String achievmentUser=sp.getString("username", "anonymous");
+			new CompleteAchievment("1",achievmentUser).execute(); // achievment - zaglosowanie na pomysl
 			finish();
 		} else if (id == R.id.przycisk_nie_popieram) {
 			votes=votes-1;
 			new ModifyVotes(votes).execute();
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(IdeaMenu.this);
+			String achievmentUser=sp.getString("username", "anonymous");
+			new CompleteAchievment("1",achievmentUser).execute(); // achievment - zaglosowanie na pomysl
 			finish();
 		}
 	}
@@ -173,6 +182,10 @@ public class IdeaMenu extends Activity implements OnClickListener{
 	            pDialog.setIndeterminate(false);
 	            pDialog.setCancelable(true);
 	            pDialog.show();
+	            
+	            if(votes>=10){
+	    			new CompleteAchievment("3",autor).execute(); // achievment - za zdobycie 10 glosow
+	            }
 
 	        }
 		 

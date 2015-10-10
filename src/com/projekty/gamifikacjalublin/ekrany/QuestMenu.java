@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projekty.gamifikacjalublin.R;
+import com.projekty.gamifikacjalublin.core.CompleteAchievment;
 import com.projekty.gamifikacjalublin.core.GPSTracker;
 import com.projekty.gamifikacjalublin.core.JSONParser;
 
@@ -116,6 +117,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 			break;
 			
 		case R.id.przycisk_zglos_wykonanie:
+			
 				checkCurrentPosition();
 			break;
 		}
@@ -419,19 +421,26 @@ public class QuestMenu extends Activity implements OnClickListener{
 			
 		}
 	}
-	
 	public void checkPassword(){
-		int punkty_do_przyznania=0;
+		int punkty_do_przyznania=20;
 		 if(hasloZadania.getText().toString().toLowerCase().equals(QUEST_PASSWORD.toString().toLowerCase())){
 			 for(int i=0;i<QUEST_PASSWORD.length();i++){
 				if(letters_fields.get("letter_"+i).getText().equals("_")){
 					punkty_do_przyznania=punkty_do_przyznania+20;
 				}
 			}
+			if(punkty_do_przyznania>=100){
+				SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(QuestMenu.this);
+				String achievmentUser=sp.getString("username", "anonymous");
+				new CompleteAchievment("4",achievmentUser).execute(); // achievment - za rozwiazanie hasla przy odkrytych maksymalnie 2 literach
+			}
 			activeObjectives.clear();
 			punktyZaZadanie=punkty_do_przyznania;
 			new CompleteQuest("1").execute();
-			 
+			
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(QuestMenu.this);
+			String achievmentUser=sp.getString("username", "anonymous");
+			new CompleteAchievment("0",achievmentUser).execute(); // achievment - wykonanie pierwszego zadania
 			 
 		 }else{
 			 Toast.makeText(QuestMenu.this, "Niepoprawne has³o", Toast.LENGTH_LONG).show();
@@ -451,7 +460,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 	        protected void onPreExecute() {
 	            super.onPreExecute();
 	            pDialog = new ProgressDialog(QuestMenu.this);
-	            pDialog.setMessage("Aktualizowanie iloœci g³osów...");
+	            pDialog.setMessage("Trwa modyfikacja punktów...");
 	            pDialog.setIndeterminate(false);
 	            pDialog.setCancelable(true);
 	           // pDialog.show();

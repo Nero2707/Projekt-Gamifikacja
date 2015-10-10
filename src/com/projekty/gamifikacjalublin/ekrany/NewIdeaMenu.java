@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.projekty.gamifikacjalublin.R;
+import com.projekty.gamifikacjalublin.core.CompleteAchievment;
 import com.projekty.gamifikacjalublin.core.JSONParser;
 
 import android.app.Activity;
@@ -51,6 +52,9 @@ public class NewIdeaMenu extends Activity implements OnClickListener{
 		switch(v.getId()){
 		case R.id.przycisk_dodaj_pomysl:
 			new PostIdea().execute();
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(NewIdeaMenu.this);
+			String achievmentUser=sp.getString("username", "anonymous");
+			new CompleteAchievment("2",achievmentUser).execute(); // achievment - umieszczenie pomyslu
 			break;	
 		}
 		
