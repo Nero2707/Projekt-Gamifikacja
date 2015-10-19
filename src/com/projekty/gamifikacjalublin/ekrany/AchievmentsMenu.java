@@ -34,7 +34,6 @@ public class AchievmentsMenu extends Activity{
 	private static final String TAG_MESSAGE = "message";
 	private ArrayList<String> completedAchievments;
 	private  HashMap<String, ImageView> images_fields=new HashMap<String, ImageView>();
-	
 	JSONParser jsonParser = new JSONParser();
 	
 	@Override

@@ -430,8 +430,63 @@ public class QuestMenu extends Activity implements OnClickListener{
 			
 			}else{
 				gps.showSettingsAlert();
+				
 			}
 			
+		}else if(Integer.parseInt(idZadania)==3){
+			GPSTracker gps = new GPSTracker(this);
+			if(gps.canGetLocation()){	
+				Location currentLocation=gps.getLocation();
+				Location objectiveLocation=new Location("");
+				//Double[] LatitudeQuestMarkers = {51.247055,51.225477};
+				//Double[] LongitudeQuestMarkers = {22.568230,22.604204};
+				//Double[] LatitudeQuestMarkers = {51.247055,51.232486};
+				//Double[] LongitudeQuestMarkers = {22.568230,22.610038};
+				if(activeObjectives.contains("1")){
+					objectiveLocation.setLatitude(51.232486); // majdanek 
+					objectiveLocation.setLongitude(22.610038);
+					
+					if(currentLocation.distanceTo(objectiveLocation)<500){
+						activeObjectives.add("1");
+						new SetActiveObjectives().execute();
+					}
+					
+				}else{
+					objectiveLocation.setLatitude(51.247055); // wie¿a trynitarska
+					objectiveLocation.setLongitude(22.568230);
+					if(currentLocation.distanceTo(objectiveLocation)<500){
+						activeObjectives.add("2");
+						new SetActiveObjectives().execute();
+					}
+					
+				}
+				if(activeObjectives.size()==2){
+					activeObjectives.clear();
+					punktyZaZadanie=100;
+					new CompleteQuest("3").execute();
+				}
+				
+//				
+//				for(int i=0;i<LatitudeQuestMarkers.length;i++){
+//					objectiveLocation.setLatitude(LatitudeQuestMarkers[i]);
+//					objectiveLocation.setLongitude(LongitudeQuestMarkers[i]);
+//					
+//					if(!activeObjectives.contains((Integer.toString(i)+1)) && currentLocation.distanceTo(objectiveLocation)<500){
+//						activeObjectives.add((Integer.toString(i)+1));
+//						new SetActiveObjectives().execute();
+//						
+//						if(activeObjectives.size()==2){
+//							activeObjectives.clear();
+//							punktyZaZadanie=100;
+//							new CompleteQuest("3").execute();
+//						}
+//						break;
+//					}
+//				}
+				Log.d("MMtest AKTUALNA LOKALIZACJA"," "+currentLocation);
+			}else{
+				gps.showSettingsAlert();
+			}
 		}
 	}
 	public void checkPassword(){
@@ -463,9 +518,11 @@ public class QuestMenu extends Activity implements OnClickListener{
 	
 	
 	public void showObjectiveImage(ArrayList<String> activeObjectives){
-		Log.d("MMtest aktywne cele"," "+activeObjectives.size());
+		
 		if(activeObjectives!=null && activeObjectives.size()>0 && !activeObjectives.isEmpty()){
-			if(activeObjectives.get(0)!=""){
+			
+			if(activeObjectives.get(0)!="" && activeObjectives.get(0)!=" " && !activeObjectives.get(0).equals(" ")){
+
 				objectiveImageView.setImageResource(QuestMenu.this.getResources().getIdentifier("objective_"+(Integer.parseInt(activeObjectives.get(activeObjectives.size()-1))+1), "drawable",QuestMenu.this.getPackageName())); 	
 			}
 

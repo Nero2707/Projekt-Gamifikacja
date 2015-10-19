@@ -9,7 +9,7 @@
     <string name="etykieta_zarejestruj">Zarejestruj</string>
 	<string name="zaloguj_hint">Login</string>
     <string name="haslo_hint">Hasło</string>
-    
+     <string name="etykieta_najlepsze_wyniki">Najlepsze wyniki</string>
     <string name="etykieta_wyswietl_osiagniecia">Osiągnięcia</string>
 	<string name="etykieta_pobierz_zadanie">Pobierz zadanie</string>
 	<string name="etykieta_zadania_innych">Wyświetl pomysły innych użytkowników</string>
@@ -43,6 +43,6 @@
 	
 	 <string name="post_idea">Dodaj pomysł</string>
 	 <string name="read_idea_title">Ostatnie pomysły</string>
-	 
+	  <string name="read_scores_title">Najlepsze wyniki</string>
 	 <string name="zadanie1_hint">Wpisz hasło</string>
 </resources>

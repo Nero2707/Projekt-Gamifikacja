@@ -79,6 +79,13 @@
         style="@style/WhiteText"
          android:text="@string/etykieta_zadania_innych"/>
     
+      <Button
+        android:id="@+id/przycisk_najlepsze_wyniki"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/black_button"
+        style="@style/WhiteText"
+         android:text="@string/etykieta_najlepsze_wyniki"/>
      
 
 </LinearLayout>

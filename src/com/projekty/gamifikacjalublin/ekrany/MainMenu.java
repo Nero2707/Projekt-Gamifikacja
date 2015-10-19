@@ -54,6 +54,7 @@ public class MainMenu extends ListActivity implements OnClickListener{
     private ArrayList<HashMap<String, String>> mQuestsList;
     View przyciskListaPomyslow; 
     View przyciskOsiagniecia;
+    View przyciskNajlepszeWyniki;
     private TextView punktyTextView;
     private View przyciskPobierzZadanie;
     private JSONParser jParser = new JSONParser();
@@ -68,6 +69,8 @@ public class MainMenu extends ListActivity implements OnClickListener{
 		przyciskListaPomyslow.setOnClickListener(this);
 		przyciskPobierzZadanie = findViewById(R.id.przycisk_pobierz_zadanie);
 		przyciskPobierzZadanie.setOnClickListener(this);
+		przyciskNajlepszeWyniki = findViewById(R.id.przycisk_najlepsze_wyniki);
+		przyciskNajlepszeWyniki.setOnClickListener(this);
 		
 		
 		//new GetPoints().execute();
@@ -92,6 +95,10 @@ public class MainMenu extends ListActivity implements OnClickListener{
 		case R.id.przycisk_pobierz_zadanie:
 				new NewQuest().execute();
 			break;
+		case R.id.przycisk_najlepsze_wyniki:
+			i = new Intent(this, HighScoresMenu.class);
+			startActivity(i);
+		break;
 		/*case R.id.zadanie_testowe_viewText:
 			i = new Intent(this, QuestMenu.class);
 			 i.putExtra("tytul", "Tytul pierwszego zadania testowego");
