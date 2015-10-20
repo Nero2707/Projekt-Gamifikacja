@@ -72,8 +72,7 @@ public class MainMenu extends ListActivity implements OnClickListener{
 		przyciskNajlepszeWyniki = findViewById(R.id.przycisk_najlepsze_wyniki);
 		przyciskNajlepszeWyniki.setOnClickListener(this);
 		
-		
-		//new GetPoints().execute();
+
 	}
 	 @Override
 	    protected void onResume() {
@@ -99,12 +98,6 @@ public class MainMenu extends ListActivity implements OnClickListener{
 			i = new Intent(this, HighScoresMenu.class);
 			startActivity(i);
 		break;
-		/*case R.id.zadanie_testowe_viewText:
-			i = new Intent(this, QuestMenu.class);
-			 i.putExtra("tytul", "Tytul pierwszego zadania testowego");
-			 i.putExtra("opis", "Opis pierwszego zadania testowego");
-			startActivity(i);	
-			break;*/
 		case R.id.przycisk_zadania_innych:
 			i = new Intent(this, IdeasListMenu.class);
 			startActivity(i);
@@ -120,14 +113,10 @@ public class MainMenu extends ListActivity implements OnClickListener{
 	
 	public void updateJSONdata(){
 
-        // Instantiate the arraylist to contain all the JSON data.
-    	// we are going to use a bunch of key-value pairs, referring
-    	// to the json element name, and the content, for example,
-    	// message it the tag, and "I'm awesome" as the content..
-    	
+      
         mQuestsList = new ArrayList<HashMap<String, String>>();
         
-        //JSONParser jParser = new JSONParser();
+       
         try {
         	 List<NameValuePair> params = new ArrayList<NameValuePair>();
              SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainMenu.this);
@@ -138,27 +127,27 @@ public class MainMenu extends ListActivity implements OnClickListener{
 
             mQuests = json.getJSONArray(TAG_QUEST);
           
-            // looping through all posts according to the json object returned
+           
             for (int i = 0; i < mQuests.length(); i++) {
                 JSONObject c = mQuests.getJSONObject(i);
 
-                //gets the content of each tag
+              
                 String title = c.getString(TAG_TITLE);
                 String description = c.getString(TAG_DESCRIPTION);
                 String objectives = c.getString(TAG_OBJECTIVES);
                 String id = c.getString(TAG_QUEST_ID);
 
-                // creating new HashMap
+              
                 HashMap<String, String> map = new HashMap<String, String>();
               
                 map.put(TAG_TITLE, title);
                 map.put(TAG_DESCRIPTION, description);
                 map.put(TAG_OBJECTIVES, objectives);
                 map.put(TAG_QUEST_ID, id);
-                // adding HashList to ArrayList
+            
                 mQuestsList.add(map);
                 
-                //annndddd, our JSON data is up to date same with our array list
+               
             }
 
         } catch (JSONException e) {
@@ -169,12 +158,7 @@ public class MainMenu extends ListActivity implements OnClickListener{
 	
 	
 	private void updateList() {
-		// For a ListActivity we need to set the List Adapter, and in order to do
-				//that, we need to create a ListAdapter.  This SimpleAdapter,
-				//will utilize our updated Hashmapped ArrayList, 
-				//use our single_post xml template for each item in our list,
-				//and place the appropriate info from the list to the
-				//correct GUI id.  Order is important here.
+	
 		
 				if(mQuestsList.size()>0){
 					przyciskPobierzZadanie.setVisibility(View.INVISIBLE);
@@ -184,27 +168,17 @@ public class MainMenu extends ListActivity implements OnClickListener{
 				ListAdapter adapter = new SimpleAdapter(this, mQuestsList,
 						R.layout.single_quest, new String[] { TAG_TITLE, TAG_DESCRIPTION }, new int[] { R.id.quest_title, R.id.quest_description});
 
-				// I shouldn't have to comment on this one:
+				
 				setListAdapter(adapter);
 				
-				// Optional: when the user clicks a list item we 
-				//could do something.  However, we will choose
-				//to do nothing...
+			
 				ListView lv = getListView();	
 				lv.setOnItemClickListener(new OnItemClickListener() {
 
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
-						//Log.d("klik","po klikniêciu "+parent.getAdapter().getItem(position).getClass());
 						
-						
-						/*HashMap chosenIdea=(HashMap) parent.getAdapter().getItem(position);
-						i = new Intent(IdeasListMenu.this, IdeaMenu.class);
-						i.putExtra("tytul",chosenIdea.get("title").toString());
-						i.putExtra("opis", chosenIdea.get("message").toString());
-						i.putExtra("idea_id",chosenIdea.get("idea_id").toString());
-						startActivity(i);*/
 						HashMap activeQuest=(HashMap) parent.getAdapter().getItem(position);
 						i = new Intent(MainMenu.this, QuestMenu.class);
 						i.putExtra("tytul", activeQuest.get("title").toString());
@@ -272,17 +246,17 @@ public class MainMenu extends ListActivity implements OnClickListener{
 			
              
             try {
-                // Building Parameters
+               
             	 List<NameValuePair> params = new ArrayList<NameValuePair>();
                  SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainMenu.this);
                  params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
                 Log.d("request!", "starting");
 
-                //Posting user data to script
+               
                 JSONObject json = jParser.makeHttpRequest(
                 		NEW_QUEST_URL, "POST", params);
 
-                // json success element
+               
                 success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
                 	Log.d("Zadanie pobrane!", json.toString());
@@ -299,7 +273,7 @@ public class MainMenu extends ListActivity implements OnClickListener{
 		}
 		
 		 protected void onPostExecute(String file_url) {
-	            // dismiss the dialog once product deleted
+	      
 	            pDialog.dismiss();
 	            if (file_url != null){
 	            	Toast.makeText(MainMenu.this, file_url, Toast.LENGTH_LONG).show();
@@ -322,7 +296,7 @@ public class MainMenu extends ListActivity implements OnClickListener{
 	            pDialog.setMessage("Aktualizowanie iloœci punktów...");
 	            pDialog.setIndeterminate(false);
 	            pDialog.setCancelable(true);
-	           // pDialog.show();
+	        
 
 	        }
 		 
@@ -331,25 +305,25 @@ public class MainMenu extends ListActivity implements OnClickListener{
 			
 			int success;
 			try {
-               // Building Parameters
+              
                List<NameValuePair> params = new ArrayList<NameValuePair>();
                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainMenu.this);
                params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
                Log.d("request!", "starting");
 
-               //Posting user data to script
+             
                JSONObject json = jParser.makeHttpRequest(
             		   GET_POINTS_URL, "POST", params);
 
-               // full json response
+              
                Log.d("OdpowiedŸ json", json.toString());
 
-               // json success element
+            
                success = json.getInt(TAG_SUCCESS);
                if (success == 1) {
                	Log.d("Zaktualizowano iloœæ g³osów!", json.toString());
                	
-               	//finish();
+              
                	return json.getString(TAG_POINTS);
                }else{
                	Log.d("Nie zaktualizowano iloœci g³osów", json.getString(TAG_MESSAGE));

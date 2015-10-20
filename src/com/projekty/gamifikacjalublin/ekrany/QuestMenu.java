@@ -82,7 +82,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 		przyciskZobaczMape = (Button) findViewById(R.id.przycisk_zobacz_mape);
 		przyciskZobaczMape.setOnClickListener(this);
 		objectiveImageView=(ImageView) findViewById(R.id.objectiveImageView);
-		objectiveImageView.setVisibility(View.INVISIBLE);
+		objectiveImageView.setVisibility(View.GONE);
 		hasloZadania = (EditText)findViewById(R.id.pole_zadanie1_haslo);
 		hasloZadania.setVisibility(View.INVISIBLE);
 		lettersLayout=(LinearLayout) findViewById(R.id.letters_layout);
@@ -155,26 +155,23 @@ public class QuestMenu extends Activity implements OnClickListener{
 			
 			int success;
 			try {
-               // Building Parameters
+            
                List<NameValuePair> params = new ArrayList<NameValuePair>();
                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(QuestMenu.this);
                params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
                Log.d("request!", "starting");
 
-               //Posting user data to script
+               
                JSONObject json = jsonParser.makeHttpRequest(
             		   GET_OBJECTIVES_URL, "POST", params);
 
-               // full json response
+             
                Log.d("OdpowiedŸ json", json.toString());
 
-               // json success element
+              
                success = json.getInt(TAG_SUCCESS);
                if (success == 1) {
-               	//Log.d("Testowy log json", json.getString(TAG_COMPLETED_OBJ));
-               	//activeObjectives=json.getString(TAG_COMPLETED_OBJ);
-               	//Log.d("Testowy log json", activeObjectives);
-               	//finish();
+               
                	return json.getString(TAG_COMPLETED_OBJ);
                }else{
                	Log.d("Nie pobrano iloœci g³osów", json.getString(TAG_MESSAGE));
@@ -239,20 +236,17 @@ public class QuestMenu extends Activity implements OnClickListener{
               params.add(new BasicNameValuePair("completed_objectives", newObjectives));
               Log.d("request!", "starting");
 
-              //Posting user data to script
+              
               JSONObject json = jsonParser.makeHttpRequest(
             		  SET_OBJECTIVES_URL, "POST", params);
 
-              // full json response
+            
               Log.d("OdpowiedŸ json", json.toString());
 
-              // json success element
+             
               success = json.getInt(TAG_SUCCESS);
               if (success == 1) {
-              	//Log.d("Testowy log json", json.getString(TAG_COMPLETED_OBJ));
-              	//activeObjectives=json.getString(TAG_COMPLETED_OBJ);
-              	//Log.d("Testowy log json", activeObjectives);
-              	//finish();
+              
               	return json.getString(TAG_COMPLETED_OBJ);
               }else{
               	Log.d("Nie zaktualizowano celów", json.getString(TAG_MESSAGE));

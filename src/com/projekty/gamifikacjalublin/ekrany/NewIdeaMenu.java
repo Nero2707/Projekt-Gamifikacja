@@ -77,12 +77,10 @@ public class NewIdeaMenu extends Activity implements OnClickListener{
 	            String post_title = title.getText().toString();
 	            String post_idea = idea.getText().toString();
 	            
-	            //We need to change this:
 	            SharedPreferences sp =PreferenceManager.getDefaultSharedPreferences(NewIdeaMenu.this);
 	            String post_username = sp.getString("username", "anonymous");
 	            
 	            try {
-	                // Building Parameters
 	                List<NameValuePair> params = new ArrayList<NameValuePair>();
 	                params.add(new BasicNameValuePair("username", post_username));
 	                params.add(new BasicNameValuePair("title", post_title));
@@ -90,14 +88,11 @@ public class NewIdeaMenu extends Activity implements OnClickListener{
 	 
 	                Log.d("request!", "starting");
 	                
-	                //Posting user data to script 
 	                JSONObject json = jsonParser.makeHttpRequest(
 	                		POST_IDEA_URL, "POST", params);
 	 
-	                // full json response
 	                Log.d("Post Comment attempt", json.toString());
 	 
-	                // json success element
 	                success = json.getInt(TAG_SUCCESS);
 	                if (success == 1) {
 	                	Log.d("Comment Added!", json.toString());    

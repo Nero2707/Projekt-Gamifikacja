@@ -62,16 +62,14 @@ public class MainActivity extends Activity implements OnClickListener{
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
+		
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
+	
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
@@ -83,8 +81,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.przycisk_zaloguj:
-			//i = new Intent(this, MainMenu.class);
-			//startActivity(i);
+		
 			new AttemptLogin().execute();
 			break;
 		case R.id.przycisk_zarejestruj:
@@ -133,7 +130,7 @@ public class MainActivity extends Activity implements OnClickListener{
                 
                 Log.d("Login attempt", json.toString());
 
-                // json success tag
+           
                 success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
                 	Log.d("Logowanie udane!", json.toString());

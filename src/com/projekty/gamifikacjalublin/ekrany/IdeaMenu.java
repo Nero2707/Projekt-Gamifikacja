@@ -67,9 +67,7 @@ public class IdeaMenu extends Activity implements OnClickListener{
 		przyciskNiePopieram.setVisibility(View.INVISIBLE);
 		new GetVotes().execute();
 		Log.d("pobrano dwa",""+voted);
-		//przyciskPopieram.setOnClickListener(IdeaMenu.this);
-	 	//przyciskNiePopieram.setOnClickListener(IdeaMenu.this);
-	 	 
+		
 	 
 
 		

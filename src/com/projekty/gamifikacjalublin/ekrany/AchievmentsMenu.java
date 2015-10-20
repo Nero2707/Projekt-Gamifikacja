@@ -80,7 +80,7 @@ public class AchievmentsMenu extends Activity{
 			
 			int success;
 			try {
-              // Building Parameters
+
               List<NameValuePair> params = new ArrayList<NameValuePair>();
               SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(AchievmentsMenu.this);
              
@@ -91,20 +91,15 @@ public class AchievmentsMenu extends Activity{
               }
               Log.d("request!", "starting");
 
-              //Posting user data to script
               JSONObject json = jsonParser.makeHttpRequest(
            		   GET_ACHIEVMENTS_URL, "POST", params);
 
-              // full json response
+
               Log.d("OdpowiedŸ json", json.toString());
 
-              // json success element
               success = json.getInt(TAG_SUCCESS);
               if (success == 1) {
-              	//Log.d("Testowy log json", json.getString(TAG_COMPLETED_OBJ));
-              	//activeObjectives=json.getString(TAG_COMPLETED_OBJ);
-              	//Log.d("Testowy log json", activeObjectives);
-              	//finish();
+            
               	return json.getString(TAG_COMPLETED_ACHIEVMENTS);
               }else{
               	Log.d("Nie pobrano iloœci g³osów", json.getString(TAG_MESSAGE));
