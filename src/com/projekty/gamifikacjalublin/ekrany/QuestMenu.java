@@ -443,8 +443,8 @@ public class QuestMenu extends Activity implements OnClickListener{
 				//Double[] LatitudeQuestMarkers = {51.247055,51.232486};
 				//Double[] LongitudeQuestMarkers = {22.568230,22.610038};
 				if(activeObjectives.contains("1")){
-					objectiveLocation.setLatitude(51.232486); // majdanek 
-					objectiveLocation.setLongitude(22.610038);
+					objectiveLocation.setLatitude(51.225477); // majdanek 
+					objectiveLocation.setLongitude(22.604204);
 					
 					if(currentLocation.distanceTo(objectiveLocation)<500){
 						activeObjectives.add("1");

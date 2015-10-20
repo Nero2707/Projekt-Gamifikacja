@@ -17,6 +17,7 @@ import com.projekty.gamifikacjalublin.ekrany.QuestMenu.GetActiveObjectives;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,12 +36,17 @@ public class AchievmentsMenu extends Activity{
 	private ArrayList<String> completedAchievments;
 	private  HashMap<String, ImageView> images_fields=new HashMap<String, ImageView>();
 	JSONParser jsonParser = new JSONParser();
-	
+	private boolean isCurrentUser=true;
+	private String user;
+	private Intent i;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.achievments_menu);
 		
+		i = getIntent();
+		isCurrentUser=i.getBooleanExtra("isCurrentUser", true);
+		user= i.getStringExtra("user");
 		
 		images_fields.put("imageView_0",(ImageView) findViewById(R.id.imageView1));
 		images_fields.put("imageView_1",(ImageView) findViewById(R.id.imageView2));
@@ -77,7 +83,12 @@ public class AchievmentsMenu extends Activity{
               // Building Parameters
               List<NameValuePair> params = new ArrayList<NameValuePair>();
               SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(AchievmentsMenu.this);
-              params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
+             
+              if(!isCurrentUser){
+            	  params.add(new BasicNameValuePair("username",user));
+              }else{
+            	  params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
+              }
               Log.d("request!", "starting");
 
               //Posting user data to script

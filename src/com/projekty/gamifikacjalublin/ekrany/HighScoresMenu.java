@@ -151,6 +151,11 @@ public class HighScoresMenu  extends ListActivity{
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
 						
+						HashMap chosenScore=(HashMap) parent.getAdapter().getItem(position);
+						i = new Intent(HighScoresMenu.this, AchievmentsMenu.class);
+						i.putExtra("user",chosenScore.get("points").toString());
+						i.putExtra("isCurrentUser", false);
+						startActivity(i);
 					}
 				});
     }
