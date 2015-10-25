@@ -16,9 +16,12 @@ import com.projekty.gamifikacjalublin.core.JSONParser;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -81,12 +84,21 @@ public class MainActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.przycisk_zaloguj:
-		
-			new AttemptLogin().execute();
+			if(isNetworkAvailable()){
+				new AttemptLogin().execute();
+			}else{
+				Toast.makeText(MainActivity.this, "Brak połączenia z internetem!", Toast.LENGTH_LONG).show();
+			}
+			
 			break;
 		case R.id.przycisk_zarejestruj:
-			i = new Intent(this, RegisterMenu.class);
-			startActivity(i);
+			if(isNetworkAvailable()){
+				i = new Intent(this, RegisterMenu.class);
+				startActivity(i);
+			}else{
+				Toast.makeText(MainActivity.this, "Brak połączenia z internetem!", Toast.LENGTH_LONG).show();
+			}
+			
 			break;
 		}
 		
@@ -134,7 +146,7 @@ public class MainActivity extends Activity implements OnClickListener{
                 success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
                 	Log.d("Logowanie udane!", json.toString());
-                	//pDialog.dismiss();
+                	
                 	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                 	Editor edit = sp.edit();
                 	edit.putString("username", username);
@@ -161,5 +173,12 @@ public class MainActivity extends Activity implements OnClickListener{
 	            }
 	    }
 
+	}
+	
+	private boolean isNetworkAvailable() {
+	    ConnectivityManager connectivityManager 
+	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 }

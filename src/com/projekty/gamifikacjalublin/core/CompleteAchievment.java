@@ -46,26 +46,23 @@ public class CompleteAchievment extends AsyncTask<String, String, String> {
 		
 		int success;
 		try {
-         // Building Parameters
+
          List<NameValuePair> params = new ArrayList<NameValuePair>();
          params.add(new BasicNameValuePair("username", username));
          params.add(new BasicNameValuePair("completed_achievments", numer_achievmentu));
          Log.d("request!", "starting");
 
-         //Posting user data to script
+
          JSONObject json = jsonParser.makeHttpRequest(
         		 SET_ACHIEVMENTS_URL, "POST", params);
 
-         // full json response
+
          Log.d("OdpowiedŸ json", json.toString());
 
-         // json success element
+
          success = json.getInt(TAG_SUCCESS);
          if (success == 1) {
-         	//Log.d("Testowy log json", json.getString(TAG_COMPLETED_OBJ));
-         	//activeObjectives=json.getString(TAG_COMPLETED_OBJ);
-         	//Log.d("Testowy log json", activeObjectives);
-         	//finish();
+         
          	return json.getString(TAG_MESSAGE);
          }else{
          	Log.d("Nie zaktualizowano celów", json.getString(TAG_MESSAGE));

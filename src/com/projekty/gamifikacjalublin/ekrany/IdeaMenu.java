@@ -113,7 +113,7 @@ public class IdeaMenu extends Activity implements OnClickListener{
 			
 			int success;
 			try {
-                // Building Parameters
+             
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(IdeaMenu.this);
             	
@@ -121,19 +121,19 @@ public class IdeaMenu extends Activity implements OnClickListener{
                 params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
                 Log.d("request!", "starting");
 
-                //Posting user data to script
+            
                 JSONObject json = jsonParser.makeHttpRequest(
                 		GET_VOTES_URL, "POST", params);
 
-                // full json response
+           
                 Log.d("OdpowiedŸ json", json.toString());
 
-                // json success element
+           
                 success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
                 	Log.d("Pobrano iloœæ g³osów!", json.toString());
                 	voted=Integer.parseInt(json.getString(TAG_VOTED));
-                	//finish();
+              
                 	return json.getString(TAG_VOTES);
                 }else{
                 	Log.d("Nie pobrano iloœci g³osów", json.getString(TAG_MESSAGE));
@@ -192,7 +192,7 @@ public class IdeaMenu extends Activity implements OnClickListener{
 			
 			int success;
 			try {
-               // Building Parameters
+              
                List<NameValuePair> params = new ArrayList<NameValuePair>();
                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(IdeaMenu.this);
                params.add(new BasicNameValuePair("idea_id", i.getStringExtra("idea_id")));
@@ -200,19 +200,19 @@ public class IdeaMenu extends Activity implements OnClickListener{
                params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
                Log.d("request!", "starting");
 
-               //Posting user data to script
+             
                JSONObject json = jsonParser.makeHttpRequest(
             		   MODIFY_VOTES_URL, "POST", params);
 
-               // full json response
+           
                Log.d("OdpowiedŸ json", json.toString());
 
-               // json success element
+            
                success = json.getInt(TAG_SUCCESS);
                if (success == 1) {
                	Log.d("Zaktualizowano iloœæ g³osów!", json.toString());
                	
-               	//finish();
+       
                	return json.getString(TAG_VOTES);
                }else{
                	Log.d("Nie zaktualizowano iloœci g³osów", json.getString(TAG_MESSAGE));

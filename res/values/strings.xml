@@ -23,9 +23,9 @@
     <string name="osiagniecie3_tytul">I ty możesz mieć wpływ</string>
 	<string name="osiagniecie3_opis">Umieść swój pomysł na rozwój miasta</string>
 	<string name="osiagniecie4_tytul">W kupie siła</string>
-	<string name="osiagniecie4_opis">Zdobądź przynajmniej 10 głosów dodanich na swój pomysł</string>
+	<string name="osiagniecie4_opis">Zdobądź przynajmniej 10 głosów dodanych na swój pomysł</string>
 	<string name="osiagniecie5_tytul">Zgaduj-zgadula</string>
-	<string name="osiagniecie5_opis">Rozwiąż hasło z zadania 2 przy odkrytych maksymalnie 2 literach</string>
+	<string name="osiagniecie5_opis">Rozwiąż hasło z zadania pierwszego przy odkrytych maksymalnie 2 literach</string>
 	
 	<string name="etykieta_zglos_wykonanie">Zsynchronizuj miejsce</string>
 	

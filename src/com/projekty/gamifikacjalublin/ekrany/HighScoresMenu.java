@@ -44,7 +44,7 @@ public class HighScoresMenu  extends ListActivity{
 	    protected void onResume() {
 	    	// TODO Auto-generated method stub
 	    	super.onResume();
-	    	//loading the comments via AsyncTask
+	  
 	    	new LoadHighScores().execute();
 	    }
 	 

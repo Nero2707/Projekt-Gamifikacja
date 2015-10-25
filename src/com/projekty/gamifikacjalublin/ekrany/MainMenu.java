@@ -184,12 +184,10 @@ public class MainMenu extends ListActivity implements OnClickListener{
 						i.putExtra("tytul", activeQuest.get("title").toString());
 						i.putExtra("opis", activeQuest.get("objectives").toString());
 						i.putExtra("idZadania", activeQuest.get("id").toString());
-						//i.putExtra("idea_id",activeQuest.get("objectives").toString());
+		
 						startActivity(i);	
 						
-						// This method is triggered if an item is click within our
-						// list. For our example we won't be using this, but
-						// it is useful to know in real life applications.
+						
 
 					}
 				});

@@ -33,7 +33,7 @@ public class IdeasListMenu extends ListActivity implements OnClickListener{
 	private Button przyciskDodajPomysl;
 	private ProgressDialog pDialog;
 	private static final String READ_IDEAS_URL = "http://lublinquest.ugu.pl/webservice/ideas.php";
-	  //JSON IDS:
+
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_TITLE = "title";
     private static final String TAG_IDEAS = "ideas";
@@ -57,7 +57,7 @@ public class IdeasListMenu extends ListActivity implements OnClickListener{
 	    protected void onResume() {
 	    	// TODO Auto-generated method stub
 	    	super.onResume();
-	    	//loading the comments via AsyncTask
+	  
 	    	new LoadIdeas().execute();
 	    }
 	 

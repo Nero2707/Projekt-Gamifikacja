@@ -29,16 +29,16 @@ public class JSONParser {
     static JSONObject jObj = null;
     static String json = "";
 
-    // constructor
+
     public JSONParser() {
 
     }
 
     public JSONObject getJSONFromUrl(String url) {
 
-        // Making HTTP request
+     
         try {
-            // defaultHttpClient
+       
             DefaultHttpClient httpClient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(url);
 
@@ -60,46 +60,44 @@ public class JSONParser {
             StringBuilder sb = new StringBuilder();
             String line = null;
             while ((line = reader.readLine()) != null) {
-            	//if(line.toLowerCase().contains("marker-")){
-            	//	line=line.replace("marker-","");
+            
             		sb.append(line);
-            //	}
+
             }
             is.close();
             
             Document doc = Jsoup.parse(sb.toString());
             doc.select("script, style, .hidden, div").remove();
             json=doc.text();
-            //json = sb.toString();
+          
         } catch (Exception e) {
             Log.e("Buffer Error", "Error converting result " + e.toString());
         }
 
-        // try parse the string to a JSON object
+    
         try {
             jObj = new JSONObject(json);
         } catch (JSONException e) {
             Log.e("JSON Parser", "Error parsing data " + e.toString());
         }
 
-        // return JSON String
+     
         return jObj;
 
     }
     
     
     
-    // funkcja pobierajaca JSON z URL poprzez http post albo get
+
     public JSONObject makeHttpRequest(String url, String method,
             List<NameValuePair> params) {
  
-        // Making HTTP request
+       
         try {
  
-            // check for request method
+       
             if(method == "POST"){
-                // request method is POST
-                // defaultHttpClient
+             
                 DefaultHttpClient httpClient = new DefaultHttpClient();
                 HttpPost httpPost = new HttpPost(url);
                 httpPost.setEntity(new UrlEncodedFormEntity(params));
@@ -109,7 +107,7 @@ public class JSONParser {
                 is = httpEntity.getContent();
  
             }else if(method == "GET"){
-                // request method is GET
+          
                 DefaultHttpClient httpClient = new DefaultHttpClient();
                 String paramString = URLEncodedUtils.format(params, "utf-8");
                 url += "?" + paramString;
@@ -138,22 +136,20 @@ public class JSONParser {
             StringBuilder sb = new StringBuilder();
             String line = null;
             while ((line = reader.readLine()) != null) {
-            	//if(line.toLowerCase().contains("marker-")){
-            //		line=line.replace("marker-","");
+           
             		sb.append(line);
-            //	}
+
             }
             is.close();
-            //String nohtml = sb.toString().replaceAll("\\<.*?>","");
+           
             Document doc = Jsoup.parse(sb.toString());
             doc.select("script, style, .hidden, div").remove();
             json=doc.text();
-            //json = sb.toString();
+   
         } catch (Exception e) {
             Log.e("Buffer Error", "Error converting result " + e.toString());
         }
  
-        // try parse the string to a JSON object
         try {
         	Log.d("tresc strony",""+json);
             jObj = new JSONObject(json);
@@ -161,7 +157,7 @@ public class JSONParser {
             Log.e("JSON Parser", "Error parsing data " + e.toString());
         }
  
-        // return JSON String
+      
         return jObj;
  
     }

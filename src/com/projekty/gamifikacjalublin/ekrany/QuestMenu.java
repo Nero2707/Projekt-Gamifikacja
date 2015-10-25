@@ -293,21 +293,21 @@ public class QuestMenu extends Activity implements OnClickListener{
 			
 			int success;
 			try {
-             // Building Parameters
+         
              List<NameValuePair> params = new ArrayList<NameValuePair>();
              SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(QuestMenu.this);
              params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
              params.add(new BasicNameValuePair("quest_id", id_wykonanego_zadania));
              Log.d("request!", "starting");
 
-             //Posting user data to script
+           
              JSONObject json = jsonParser.makeHttpRequest(
             		 COMPLETE_QUEST_URL, "POST", params);
 
-             // full json response
+        
              Log.d("OdpowiedŸ json", json.toString());
 
-             // json success element
+            
              success = json.getInt(TAG_SUCCESS);
              if (success == 1) {
              	return json.getString(TAG_MESSAGE);
@@ -374,8 +374,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 				
 				Double[] LatitudeQuestMarkers = {51.253470,51.249676,51.250191,51.248125,51.250941,51.247508};
 				Double[] LongitudeQuestMarkers = {22.572297,22.570110,22.575093,22.559492,22.556014,22.566254};
-				//Double[] LatitudeQuestMarkers = {51.253470,51.249676,51.250191,51.248125,51.232540};
-				//Double[] LongitudeQuestMarkers = {22.572297,22.570110,22.575093,22.559492,22.610090};
+				
 				
 				for(int i=0;i<LatitudeQuestMarkers.length;i++){
 					objectiveLocation.setLatitude(LatitudeQuestMarkers[i]);
@@ -386,7 +385,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 						showLetters(activeObjectives);
 						if(activeObjectives.size()==5){
 							activeObjectives.clear();
-							//punktyZaZadanie=100;
+							
 							new CompleteQuest("1").execute();
 						}
 					}
@@ -401,9 +400,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 			Double[] LatitudeQuestMarkers = {51.248156,51.250581,51.25238,51.257839,51.248109,51.243247,51.24606800000001,51.247921,51.247814};
 			Double[] LongitudeQuestMarkers = {22.559524,22.571443,22.572956,22.572699,22.544975,22.552099,22.565789,22.566133,22.569695000000003};
 			
-			//Double[] LatitudeQuestMarkers = {51.248156,51.250581,51.25238,51.257839,51.248109,51.243247,51.24606800000001,51.247921,51.232540};
-			//Double[] LongitudeQuestMarkers = {22.559524,22.571443,22.572956,22.572699,22.544975,22.552099,22.565789,22.566133,22.610090};
-			
+		
 			for(int i=0;i<LatitudeQuestMarkers.length;i++){
 				objectiveLocation.setLatitude(LatitudeQuestMarkers[i]);
 				objectiveLocation.setLongitude(LongitudeQuestMarkers[i]);
@@ -432,10 +429,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 			if(gps.canGetLocation()){	
 				Location currentLocation=gps.getLocation();
 				Location objectiveLocation=new Location("");
-				//Double[] LatitudeQuestMarkers = {51.247055,51.225477};
-				//Double[] LongitudeQuestMarkers = {22.568230,22.604204};
-				//Double[] LatitudeQuestMarkers = {51.247055,51.232486};
-				//Double[] LongitudeQuestMarkers = {22.568230,22.610038};
+				
 				if(activeObjectives.contains("1")){
 					objectiveLocation.setLatitude(51.225477); // majdanek 
 					objectiveLocation.setLongitude(22.604204);
@@ -460,23 +454,7 @@ public class QuestMenu extends Activity implements OnClickListener{
 					new CompleteQuest("3").execute();
 				}
 				
-//				
-//				for(int i=0;i<LatitudeQuestMarkers.length;i++){
-//					objectiveLocation.setLatitude(LatitudeQuestMarkers[i]);
-//					objectiveLocation.setLongitude(LongitudeQuestMarkers[i]);
-//					
-//					if(!activeObjectives.contains((Integer.toString(i)+1)) && currentLocation.distanceTo(objectiveLocation)<500){
-//						activeObjectives.add((Integer.toString(i)+1));
-//						new SetActiveObjectives().execute();
-//						
-//						if(activeObjectives.size()==2){
-//							activeObjectives.clear();
-//							punktyZaZadanie=100;
-//							new CompleteQuest("3").execute();
-//						}
-//						break;
-//					}
-//				}
+		
 				Log.d("MMtest AKTUALNA LOKALIZACJA"," "+currentLocation);
 			}else{
 				gps.showSettingsAlert();
@@ -547,26 +525,26 @@ public class QuestMenu extends Activity implements OnClickListener{
 			
 			int success;
 			try {
-               // Building Parameters
+             
                List<NameValuePair> params = new ArrayList<NameValuePair>();
                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(QuestMenu.this);
                params.add(new BasicNameValuePair("points", pointsToSave));
                params.add(new BasicNameValuePair("username", sp.getString("username", "anonymous")));
                Log.d("request!", "starting");
 
-               //Posting user data to script
+             
                JSONObject json = jsonParser.makeHttpRequest(
             		   MODIFY_POINTS_URL, "POST", params);
 
-               // full json response
+             
                Log.d("OdpowiedŸ json", json.toString());
 
-               // json success element
+           
                success = json.getInt(TAG_SUCCESS);
                if (success == 1) {
                	Log.d("Zaktualizowano iloœæ punktów!", json.toString());
                	
-               	//finish();
+               	
                	return json.getString(TAG_MESSAGE);
                }else{
                	Log.d("Nie zaktualizowano iloœci g³osów", json.getString(TAG_MESSAGE));
